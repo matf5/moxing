@@ -11,14 +11,14 @@
     FROM
     `user`
     WHERE
-    phonenum = #{phonenum}
+    phone_num = #{phonenum}
     </select>
 
     <!--增加语句-->
     <insert id="add" parameterType="User">
         INSERT INTO
         `user`
-        (`phonenum`,`password`,`isValid`)
+        (`phone_num`,`password`,`isValid`)
         VALUES
         (#{phonenum},#{password},1)
     </insert>
