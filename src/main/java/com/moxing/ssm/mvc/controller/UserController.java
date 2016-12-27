@@ -4,7 +4,7 @@ package com.moxing.ssm.mvc.controller;
 import com.moxing.ssm.model.ResponseObj;
 import com.moxing.ssm.model.User;
 import com.moxing.ssm.model.UserInfo;
-import com.moxing.ssm.service.UserInfoService;
+import com.moxing.ssm.service.serviceImpl.UserInfoServiceImpl;
 import com.moxing.ssm.service.serviceImpl.UserServiceImpl;
 import com.moxing.ssm.utils.GsonUtils;
 import com.moxing.ssm.utils.StringUtils;
@@ -28,7 +28,8 @@ public class UserController {
     @Autowired
     private UserServiceImpl userService;    //自动载入Service对象
     private ResponseObj responseObj;
-    private UserInfoService userInfoService;
+    @Autowired
+    private UserInfoServiceImpl userInfoService;
 
     /**
      * @Author:lxx
@@ -71,8 +72,8 @@ public class UserController {
         responseObj.setMsg("注册成功");
         User user1 = userService.findUser(user);
         UserInfo userinfo =new UserInfo();
-        userinfo.setUserId(4);
-        userinfo.setPhoneNum("135566");
+        userinfo.setUserId(user1.getId());
+        userinfo.setPhoneNum(user1.getPhonenum());
         //userinfo.setNickname("扑母");
         //userinfo.setHeadimgUrl("2222");
         userInfoService.add(userinfo);

@@ -9,14 +9,14 @@ import org.springframework.stereotype.Service;
 /**
  * Created by lxx on 2016/12/27.
  */
-@Service("UserInfoService")
+@Service("userInfoService")
 public class UserInfoServiceImpl {
     @Autowired
     private UserInfoDao userInfoDao;
     public void add(UserInfo userInfo) throws Exception {
         int result = 0; //受影响的行数默认为0
         try {
-            result = userInfoDao.insertTest(userInfo);
+            result = userInfoDao.insertSelective(userInfo);
         } catch (Exception e) {
             System.out.println("修改资料失败");
             //其他用户添加失败异常

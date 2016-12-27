@@ -12,8 +12,6 @@ public interface UserInfoDao {
 
     int insertSelective(UserInfo record);
 
-    int insertTest(UserInfo record);
-
     UserInfo selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(UserInfo record);

@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
         } catch (Exception e) {
             System.out.println("添加用户失败,用户已经存在");
             //其他用户添加失败异常
-            throw new OtherThingsException(e);
+            //throw new OtherThingsException(e);
         }
         if (result > 0)
             System.out.println("添加用户成功");
