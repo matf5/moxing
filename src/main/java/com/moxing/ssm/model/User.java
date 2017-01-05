@@ -6,16 +6,16 @@ import java.io.Serializable;
  * Created by mtf on 2016/11/30.
  */
 public class User implements Serializable {
-    private String phonenum;
+    private String phoneNum;
     private String password;
     private int id;
 
-    public String getPhonenum() {
-        return phonenum;
+    public String getPhoneNum() {
+        return phoneNum;
     }
 
-    public void setPhonenum(String phonenum) {
-        this.phonenum = phonenum;
+    public void setPhoneNum(String phonenum) {
+        this.phoneNum = phonenum;
     }
 
     public String getPassword() {

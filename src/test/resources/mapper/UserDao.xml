@@ -5,29 +5,29 @@
 <mapper namespace="com.moxing.ssm.dao.UserDao">
     <resultMap id="BaseResultMap" type="com.moxing.ssm.model.User" >
         <id column="id" property="id" jdbcType="INTEGER" />
-        <result column="phone_num" property="phonenum" jdbcType="VARCHAR" />
+        <result column="phone_num" property="phoneNum" jdbcType="VARCHAR" />
         <result column="password" property="password" jdbcType="VARCHAR" />
         <result column="cDate" property="cdate" jdbcType="TIMESTAMP" />
         <result column="mDate" property="mdate" jdbcType="TIMESTAMP" />
-        <result column="isValid" property="isValid" jdbcType="INTEGER" />
+        <result column="is_valid" property="isValid" jdbcType="INTEGER" />
     </resultMap>
     <!--查找-->
-    <select id="findOneById" resultType="User" parameterType="String">
+    <select id="findOneByPhoneNum" resultType="User" parameterType="String">
     SELECT
     *
     FROM
     `user`
     WHERE
-    id = #{userId}
+    phone_num = #{phoneNum}
     </select>
 
     <!--增加语句-->
     <insert id="add" parameterType="User">
         INSERT INTO
         `user`
-        (`phone_num`,`password`,`isValid`)
+        (`phone_num`,`password`,`is_valid`)
         VALUES
-        (#{phonenum},#{password},1)
+        (#{phoneNum},#{password},1)
     </insert>
 <!--
     &lt;!&ndash; 删除 &ndash;&gt;

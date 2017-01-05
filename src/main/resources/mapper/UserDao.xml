@@ -5,22 +5,22 @@
 <mapper namespace="com.moxing.ssm.dao.UserDao">
 
     <!--查找-->
-    <select id="findOneById" resultType="User" parameterType="String">
+    <select id="findOneByPhoneNum" resultType="User" parameterType="String">
     SELECT
     *
     FROM
     `user`
     WHERE
-    phone_num = #{phonenum}
+    phone_num = #{phoneNum}
     </select>
 
     <!--增加语句-->
     <insert id="add" parameterType="User">
         INSERT INTO
         `user`
-        (`phone_num`,`password`,`isValid`)
+        (`phone_num`,`password`,`is_valid`)
         VALUES
-        (#{phonenum},#{password},1)
+        (#{phoneNum},#{password},1)
     </insert>
 <!--
     &lt;!&ndash; 删除 &ndash;&gt;

@@ -19,7 +19,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 用户请求相关控制器
- * <br/>Created by acheng on 2016/9/26.
  */
 @Controller
 @RequestMapping("/userAction")
@@ -34,7 +33,7 @@ public class UserController {
     /**
      * @Author:lxx
      * @description：注册接口
-     * @Date：10:31 2016/12/6
+     * @Date：10:31 2016/12/26
      */
    //注册接口
     @RequestMapping(value = "/reg"
@@ -49,7 +48,7 @@ public class UserController {
             responseObj.setMsg("用户信息不能为空！");
             return new GsonUtils().toJson(responseObj);
         }
-        if (StringUtils.isEmpty(user.getPhonenum()) || StringUtils.isEmpty(user.getPassword())) {
+        if (StringUtils.isEmpty(user.getPhoneNum()) || StringUtils.isEmpty(user.getPassword())) {
             responseObj.setCode(ResponseObj.EMPTY);
             responseObj.setMsg("用户名或密码不能为空！");
             return new GsonUtils().toJson(responseObj);
@@ -73,7 +72,7 @@ public class UserController {
         User user1 = userService.findUser(user);
         UserInfo userinfo =new UserInfo();
         userinfo.setUserId(user1.getId());
-        userinfo.setPhoneNum(user1.getPhonenum());
+        userinfo.setPhoneNum(user1.getPhoneNum());
         //userinfo.setNickname("扑母");
         //userinfo.setHeadimgUrl("2222");
         userInfoService.add(userinfo);
@@ -82,9 +81,9 @@ public class UserController {
     }
 
     /**
-     * @Author:mtf
+     * @Author:lxx
      * @description：登录接口
-     * @Date：10:31 2016/12/6
+     * @Date：15:32 2016/12/26
      */
     //登录接口
     @RequestMapping(value = "/login"
@@ -99,7 +98,7 @@ public class UserController {
             responseObj.setMsg("登录信息不能为空");
             return new GsonUtils().toJson(responseObj); //返回json
         }
-        if (StringUtils.isEmpty(user.getPhonenum()) || StringUtils.isEmpty(user.getPassword())) {
+        if (StringUtils.isEmpty(user.getPhoneNum()) || StringUtils.isEmpty(user.getPassword())) {
             responseObj = new ResponseObj<User>();
             responseObj.setCode(ResponseObj.FAILED);
             responseObj.setMsg("用户名或密码不能为空");
@@ -117,6 +116,7 @@ public class UserController {
                 responseObj = new ResponseObj<User>();
                 responseObj.setCode(ResponseObj.OK);
                 responseObj.setMsg(ResponseObj.OK_STR);
+                responseObj.setData(user1.getId());
 
             } else {
                 responseObj = new ResponseObj<User>();

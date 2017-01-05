@@ -28,6 +28,6 @@ public class UserServiceImpl implements UserService {
     }
 
     public User findUser(User user) throws Exception {
-        return userDao.findOneById(user.getPhonenum());
+        return userDao.findOneByPhoneNum(user.getPhoneNum());
     }
 }
