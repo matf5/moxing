@@ -11,7 +11,9 @@ public class UserInfo {
 
     private String headimgUrl;
 
-    private String position;
+    private String positionCity;
+
+    private String positionProv;
 
     private String longitude;
 
@@ -24,6 +26,22 @@ public class UserInfo {
     private Date mdate;
 
     private Integer userId;
+
+    public String getPositionCity() {
+        return positionCity;
+    }
+
+    public void setPositionCity(String positionCity) {
+        this.positionCity = positionCity;
+    }
+
+    public String getPositionProv() {
+        return positionProv;
+    }
+
+    public void setPositionProv(String positionProv) {
+        this.positionProv = positionProv;
+    }
 
     public Integer getId() {
         return id;
@@ -55,14 +73,6 @@ public class UserInfo {
 
     public void setHeadimgUrl(String headimgUrl) {
         this.headimgUrl = headimgUrl == null ? null : headimgUrl.trim();
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position == null ? null : position.trim();
     }
 
     public String getLongitude() {

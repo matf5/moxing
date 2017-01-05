@@ -2,7 +2,6 @@ package com.moxing.ssm.dao;
 
 import com.moxing.ssm.model.User;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -15,7 +14,7 @@ public interface UserDao extends Dao<User> {
 
     int update(User user);
 
-    User findOneById(Serializable id);
+    User findOneByPhoneNum(String phoneNum);
 
     List<User> findAll();
 }

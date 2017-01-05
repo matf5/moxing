@@ -25,4 +25,17 @@ public class UserInfoServiceImpl {
         if (result > 0)
             System.out.println("添加资料成功");
     }
+
+
+    public void update(UserInfo userInfo) throws Exception {
+        int result = 0; //受影响的行数默认为0
+        try {
+            result = userInfoDao.updateByPrimaryKeySelective(userInfo);
+        } catch (Exception e) {
+            System.out.println("更新资料失败");
+
+        }
+        if (result > 0)
+            System.out.println("更新资料成功");
+    }
 }
