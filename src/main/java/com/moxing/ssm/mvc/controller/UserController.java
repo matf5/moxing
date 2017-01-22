@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 用户请求相关控制器
@@ -29,7 +31,9 @@ public class UserController {
     private ResponseObj responseObj;
     @Autowired
     private UserInfoServiceImpl userInfoService;
-
+    static final String imgUrl0 = "www.taobao.com";
+    static final String posProv0 = "北京";
+    static final String posCity0 = "北京";
     /**
      * @Author:lxx
      * @description：注册接口
@@ -41,6 +45,7 @@ public class UserController {
             , produces = "application/json; charset=utf-8")
     @ResponseBody
     public String reg(HttpServletRequest request, HttpServletResponse response, User user) throws Exception {
+
 
         responseObj = new ResponseObj<User>();
         if (user == null) {
@@ -74,7 +79,9 @@ public class UserController {
         userinfo.setUserId(user1.getId());
         userinfo.setPhoneNum(user1.getPhoneNum());
         //userinfo.setNickname("扑母");
-        //userinfo.setHeadimgUrl("2222");
+        userinfo.setHeadimgUrl(imgUrl0);
+        userinfo.setPositionCity(posCity0);
+        userinfo.setPositionProv(posProv0);
         userInfoService.add(userinfo);
 
         return new GsonUtils().toJson(responseObj);
@@ -116,13 +123,14 @@ public class UserController {
                 responseObj = new ResponseObj<User>();
                 responseObj.setCode(ResponseObj.OK);
                 responseObj.setMsg(ResponseObj.OK_STR);
-                responseObj.setData(user1.getId());
+                Map<String, Object> resultMap = new HashMap<String, Object>();
+                resultMap.put("userId", user1.getId());
+                responseObj.setData(resultMap);
 
             } else {
                 responseObj = new ResponseObj<User>();
                 responseObj.setCode(ResponseObj.FAILED);
                 responseObj.setMsg("用户密码错误");
-
             }
         }
         return new GsonUtils().toJson(responseObj);

@@ -3,7 +3,7 @@ package com.moxing.ssm.model;
 import java.io.Serializable;
 
 /**
- * Created by mtf on 2016/11/30.
+ * Created by lxx on 2016/11/30.
  */
 public class User implements Serializable {
     private String phoneNum;

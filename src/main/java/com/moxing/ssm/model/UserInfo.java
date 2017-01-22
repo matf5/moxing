@@ -2,6 +2,9 @@ package com.moxing.ssm.model;
 
 import java.util.Date;
 
+/**
+ * Created by lxx on 2017/12/1.
+ */
 public class UserInfo {
     private Integer id;
 
