@@ -121,7 +121,7 @@
             <if test="imgUrl != null" >
                 #{imgUrl,jdbcType=VARCHAR},
             </if>
-            <if test="state != INTEGER" >
+            <if test="state != null" >
                 #{state,jdbcType=INTEGER},
             </if>
             <if test="longitude != null" >

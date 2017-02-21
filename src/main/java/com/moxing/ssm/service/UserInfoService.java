@@ -1,5 +1,6 @@
 package com.moxing.ssm.service;
 
+import com.moxing.ssm.model.Label;
 import com.moxing.ssm.model.UserInfo;
 
 /**
@@ -9,5 +10,7 @@ public interface UserInfoService {
 
     void add(UserInfo userInfo) throws Exception;
 
-    void update(UserInfo userInfo) throws Exception;
+    void updateUserInfo(UserInfo userInfo) throws Exception;
+
+    void insertLabel(Label label) throws Exception;
 }
