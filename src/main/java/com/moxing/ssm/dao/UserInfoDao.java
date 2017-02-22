@@ -1,5 +1,6 @@
 package com.moxing.ssm.dao;
 
+import com.moxing.ssm.model.Label;
 import com.moxing.ssm.model.UserInfo;
 
 /**
@@ -17,4 +18,6 @@ public interface UserInfoDao {
     int updateByPrimaryKeySelective(UserInfo record);
 
     int updateByPrimaryKey(UserInfo record);
+
+    int insertLabel(Label label);
 }
