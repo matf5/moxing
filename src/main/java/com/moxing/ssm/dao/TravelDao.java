@@ -11,6 +11,10 @@ public interface TravelDao {
 
     int add(Travel travel);
 
+    Travel findByUserId(Integer userId);
+
+    List<Travel> getTraListOfSamePos(String destPosProv, String destPosCity);
+
     int addBySelective(Travel travel);
 
     int del(Travel travel);

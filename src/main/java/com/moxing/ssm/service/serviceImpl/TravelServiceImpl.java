@@ -7,6 +7,8 @@ import com.moxing.ssm.service.TravelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by lxx on 2017/1/7.
  */
@@ -25,5 +27,13 @@ public class TravelServiceImpl implements TravelService {
         }
         if (result > 0)
             System.out.println("添加行程成功");
+    }
+
+    public Travel findByUserId(Integer userId) throws Exception {
+        return travelDao.findByUserId(userId);
+    }
+
+    public List<Travel> getTraListOfSamePos(String destPosProv, String destPosCity) throws Exception {
+        return travelDao.getTraListOfSamePos(destPosProv, destPosCity);
     }
 }

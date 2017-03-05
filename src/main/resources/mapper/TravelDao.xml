@@ -148,4 +148,21 @@
         #{destPosProv},#{destPosCity},#{longitude},#{latitude}, #{description},#{imgUrl})
     </insert>
 
+    <select id="findByUserId" resultType="Travel" parameterType="Integer">
+        SELECT
+        *
+        FROM
+        `travel`
+        WHERE
+        user_id = #{userId} AND is_expired = 0
+    </select>
+
+    <select id="getTraListOfSamePos" resultType="Travel" parameterType="String">
+        SELECT
+        *
+        FROM
+        `travel`
+        WHERE
+        dest_pos_prov = #{destPosProv} AND dest_pos_city = destPosCity
+    </select>
 </mapper>
