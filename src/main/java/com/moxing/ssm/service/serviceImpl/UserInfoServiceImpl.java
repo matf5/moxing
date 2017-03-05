@@ -43,7 +43,7 @@ public class UserInfoServiceImpl {
     public void insertLabel(Label label) throws Exception {
         int result = 0; //受影响的行数默认为0
         try {
-            result = userInfoDao.insertLabel(label);
+           // result = userInfoDao.insertLabel(label);
         } catch (Exception e) {
             System.out.println("更新标签失败");
 

@@ -6,20 +6,21 @@
     <result column="phone_num" property="phoneNum" jdbcType="VARCHAR" />
     <result column="nickname" property="nickname" jdbcType="VARCHAR" />
     <result column="headimg_url" property="headimgUrl" jdbcType="VARCHAR" />
-    <result column="position" property="position" jdbcType="VARCHAR" />
+    <result column="pos_city" property="posCity" jdbcType="VARCHAR" />
     <result column="longitude" property="longitude" jdbcType="VARCHAR" />
     <result column="sex" property="sex" jdbcType="BIT" />
     <result column="latitude" property="latitude" jdbcType="VARCHAR" />
     <result column="cDate" property="cdate" jdbcType="TIMESTAMP" />
     <result column="mDate" property="mdate" jdbcType="TIMESTAMP" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="pos_prov" property="posProv" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, phone_num, nickname, headimg_url, position, longitude, sex, latitude, cDate, 
-    mDate, user_id
+    id, phone_num, nickname, headimg_url, pos_city, longitude, sex, latitude, cDate,
+    mDate, user_id, pos_prov
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from userinfo
     where id = #{id,jdbcType=INTEGER}
@@ -29,16 +30,17 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.moxing.ssm.model.UserInfo" >
-    insert into userinfo ( phone_num, nickname,
-      headimg_url, position, longitude, 
-      sex, latitude, cDate, 
-      mDate, user_id)
-    values ( #{phoneNum,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR},
-      #{headimgUrl,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, #{longitude,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=BIT}, #{latitude,jdbcType=VARCHAR}, #{cdate,jdbcType=TIMESTAMP}, 
-      #{mdate,jdbcType=TIMESTAMP}, #{userId,jdbcType=INTEGER})
+    insert into userinfo (id, phone_num, nickname,
+    headimg_url, pos_city, longitude,
+    sex, latitude, cDate,
+    mDate, user_id, pos_prov
+    )
+    values (#{id,jdbcType=INTEGER}, #{phoneNum,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR},
+    #{headimgUrl,jdbcType=VARCHAR}, #{posCity,jdbcType=VARCHAR}, #{longitude,jdbcType=VARCHAR},
+    #{sex,jdbcType=BIT}, #{latitude,jdbcType=VARCHAR}, #{cdate,jdbcType=TIMESTAMP},
+    #{mdate,jdbcType=TIMESTAMP}, #{userId,jdbcType=INTEGER}, #{posProv,jdbcType=VARCHAR}
+    )
   </insert>
-
   <insert id="insertSelective" parameterType="com.moxing.ssm.model.UserInfo" >
     insert into userinfo
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -54,8 +56,8 @@
       <if test="headimgUrl != null" >
         headimg_url,
       </if>
-      <if test="position != null" >
-        position,
+      <if test="posCity != null" >
+        pos_city,
       </if>
       <if test="longitude != null" >
         longitude,
@@ -75,6 +77,9 @@
       <if test="userId != null" >
         user_id,
       </if>
+      <if test="posProv != null" >
+        pos_prov,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -89,8 +94,8 @@
       <if test="headimgUrl != null" >
         #{headimgUrl,jdbcType=VARCHAR},
       </if>
-      <if test="position != null" >
-        #{position,jdbcType=VARCHAR},
+      <if test="posCity != null" >
+        #{posCity,jdbcType=VARCHAR},
       </if>
       <if test="longitude != null" >
         #{longitude,jdbcType=VARCHAR},
@@ -110,6 +115,9 @@
       <if test="userId != null" >
         #{userId,jdbcType=INTEGER},
       </if>
+      <if test="posProv != null" >
+        #{posProv,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.moxing.ssm.model.UserInfo" >
@@ -124,8 +132,8 @@
       <if test="headimgUrl != null" >
         headimg_url = #{headimgUrl,jdbcType=VARCHAR},
       </if>
-      <if test="position != null" >
-        position = #{position,jdbcType=VARCHAR},
+      <if test="posCity != null" >
+        pos_city = #{posCity,jdbcType=VARCHAR},
       </if>
       <if test="longitude != null" >
         longitude = #{longitude,jdbcType=VARCHAR},
@@ -145,6 +153,9 @@
       <if test="userId != null" >
         user_id = #{userId,jdbcType=INTEGER},
       </if>
+      <if test="posProv != null" >
+        pos_prov = #{posProv,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -153,13 +164,14 @@
     set phone_num = #{phoneNum,jdbcType=VARCHAR},
       nickname = #{nickname,jdbcType=VARCHAR},
       headimg_url = #{headimgUrl,jdbcType=VARCHAR},
-      position = #{position,jdbcType=VARCHAR},
+      pos_city = #{posCity,jdbcType=VARCHAR},
       longitude = #{longitude,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=BIT},
       latitude = #{latitude,jdbcType=VARCHAR},
       cDate = #{cdate,jdbcType=TIMESTAMP},
       mDate = #{mdate,jdbcType=TIMESTAMP},
-      user_id = #{userId,jdbcType=INTEGER}
+      user_id = #{userId,jdbcType=INTEGER},
+      pos_prov = #{posProv,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

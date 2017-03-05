@@ -80,8 +80,8 @@ public class UserController {
         userinfo.setPhoneNum(user1.getPhoneNum());
         //userinfo.setNickname("扑母");
         userinfo.setHeadimgUrl(imgUrl0);
-        userinfo.setPositionCity(posCity0);
-        userinfo.setPositionProv(posProv0);
+        userinfo.setPosCity(posCity0);
+        userinfo.setPosProv(posProv0);
         userInfoService.add(userinfo);
 
         return new GsonUtils().toJson(responseObj);

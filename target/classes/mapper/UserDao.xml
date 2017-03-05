@@ -15,7 +15,7 @@
     </select>
 
     <!--增加语句-->
-    <insert id="add" parameterType="User">
+    <insert id="add" parameterType="com.moxing.ssm.model.User">
         INSERT INTO
         `user`
         (`phone_num`,`password`,`is_valid`)
