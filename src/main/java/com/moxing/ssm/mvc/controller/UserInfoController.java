@@ -1,6 +1,11 @@
 package com.moxing.ssm.mvc.controller;
 
+
+import com.google.gson.Gson;
+import com.moxing.ssm.model.CosJsonBean;
+
 import com.moxing.ssm.model.Label;
+
 import com.moxing.ssm.model.ResponseObj;
 import com.moxing.ssm.model.User;
 import com.moxing.ssm.model.UserInfo;
@@ -18,6 +23,9 @@ import sun.misc.BASE64Decoder;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
 
 /**
  * Created by lxx on 2016/12/29.
@@ -39,19 +47,33 @@ public class UserInfoController {
             , produces = "application/json; charset=utf-8")
     @ResponseBody
     public String uploadHeadImg(HttpServletRequest request) throws IOException {
-        String img = request.getParameter("img");
-        byte[] butter = new BASE64Decoder().decodeBuffer(img);
+            String img = request.getParameter("img");
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+            String preName = simpleDateFormat.format(new Date());
+            StringBuilder stringBuilder = new StringBuilder(preName);
+
+
+            Random random = new Random();
+            for(int i=0; i<10; i++){
+               stringBuilder.append(random.nextInt(10));
+            }
+            preName = stringBuilder.toString();
+            String imgFileName=preName+".jpg";
+
+            byte[] butter = new BASE64Decoder().decodeBuffer(img);
        // InputStream inputStream = new ByteArrayInputStream(new BASE64Decoder().decodeBuffer(img));
-            responseObj = new ResponseObj<User>();
+            responseObj = new ResponseObj<String>();
 
-            UploadFileRequest uploadFileRequest = new UploadFileRequest(MyCos.getBucketName(),"/sample_file.jpg",butter);
+            UploadFileRequest uploadFileRequest = new UploadFileRequest(MyCos.getBucketName(),"/headImg"+imgFileName,butter);
             String uploadFileRet = MyCos.getClient().uploadFile(uploadFileRequest);
+            CosJsonBean cosJsonBean = new Gson().fromJson(uploadFileRet,CosJsonBean.class);
             System.out.println(uploadFileRet);
-            responseObj.setCode(ResponseObj.EMPTY);
-            responseObj.setMsg(uploadFileRet);
+            responseObj.setCode(ResponseObj.OK);
+            responseObj.setData(cosJsonBean.getData().getAccess_url());
+            responseObj.setMsg("上传头像成功");
 
 
-        return new GsonUtils().toJson(responseObj);
+            return new GsonUtils().toJson(responseObj);
     }
 
     @RequestMapping(value = "/updateUserInfo"

@@ -2,9 +2,6 @@ package com.moxing.ssm.model;
 
 import java.util.Date;
 
-/**
- * Created by lxx on 2017/12/1.
- */
 public class UserInfo {
     private Integer id;
 
@@ -14,9 +11,7 @@ public class UserInfo {
 
     private String headimgUrl;
 
-    private String positionCity;
-
-    private String positionProv;
+    private String posCity;
 
     private String longitude;
 
@@ -30,21 +25,7 @@ public class UserInfo {
 
     private Integer userId;
 
-    public String getPositionCity() {
-        return positionCity;
-    }
-
-    public void setPositionCity(String positionCity) {
-        this.positionCity = positionCity;
-    }
-
-    public String getPositionProv() {
-        return positionProv;
-    }
-
-    public void setPositionProv(String positionProv) {
-        this.positionProv = positionProv;
-    }
+    private String posProv;
 
     public Integer getId() {
         return id;
@@ -76,6 +57,14 @@ public class UserInfo {
 
     public void setHeadimgUrl(String headimgUrl) {
         this.headimgUrl = headimgUrl == null ? null : headimgUrl.trim();
+    }
+
+    public String getPosCity() {
+        return posCity;
+    }
+
+    public void setPosCity(String posCity) {
+        this.posCity = posCity == null ? null : posCity.trim();
     }
 
     public String getLongitude() {
@@ -124,5 +113,13 @@ public class UserInfo {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public String getPosProv() {
+        return posProv;
+    }
+
+    public void setPosProv(String posProv) {
+        this.posProv = posProv == null ? null : posProv.trim();
     }
 }

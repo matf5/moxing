@@ -95,7 +95,7 @@ public class TravelController {
 
             }
             responseObj.setCode(ResponseObj.OK);
-            responseObj.setMsg("添加行程成功！");
+            responseObj.setMsg("添加行程成功  ！");
             return new GsonUtils().toJson(responseObj);
         }
 
