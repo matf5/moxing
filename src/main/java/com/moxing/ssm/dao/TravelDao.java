@@ -2,6 +2,7 @@ package com.moxing.ssm.dao;
 
 import com.moxing.ssm.model.Travel;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ public interface TravelDao {
 
     Travel findByUserId(Integer userId);
 
-    List<Travel> getTraListOfSamePos(String destPosProv, String destPosCity);
+    List<Travel> getTraListOfSamePos(Integer userId, String destPosProv, String destPosCity);
 
     int addBySelective(Travel travel);
 
@@ -22,4 +23,13 @@ public interface TravelDao {
     int update(Travel travel);
 
     List<Travel> findAll();
+
+    Travel findById(Integer id);
+
+    int addLike(Integer userId, Integer travelId);
+
+    int ifLike(Integer userId2, Integer travelId1);
+
+    int addMessage(Integer userId1, Integer userId2, String message, Date now);
+
 }

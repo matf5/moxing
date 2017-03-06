@@ -17,4 +17,6 @@ public interface UserDao extends Dao<User> {
     User findOneByPhoneNum(String phoneNum);
 
     List<User> findAll();
+
+    User findById(Integer id);
 }

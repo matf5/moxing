@@ -8,4 +8,5 @@ import com.moxing.ssm.model.User;
 public interface UserService {
     void add(User user) throws Exception;
     User findUser(User user) throws Exception;
+    User findById(Integer id) throws Exception;
 }

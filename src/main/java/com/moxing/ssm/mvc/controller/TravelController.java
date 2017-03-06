@@ -3,6 +3,7 @@ package com.moxing.ssm.mvc.controller;
 import com.moxing.ssm.model.ResponseObj;
 import com.moxing.ssm.model.Travel;
 import com.moxing.ssm.service.serviceImpl.TravelServiceImpl;
+import com.moxing.ssm.service.serviceImpl.UserServiceImpl;
 import com.moxing.ssm.utils.GsonUtils;
 import com.moxing.ssm.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,8 +26,11 @@ import java.util.List;
 public class TravelController {
 
     ResponseObj responseObj = new ResponseObj();
+    static final String message = "我们的旅行匹配到一起啦，来聊聊吧";
     @Autowired
     private TravelServiceImpl travelService;    //自动载入Service对象
+    @Autowired
+    private UserServiceImpl userService;
 
     @RequestMapping(value = "/publish"
             , method = RequestMethod.POST
@@ -147,7 +152,7 @@ public class TravelController {
     }
 
     //根据用户发布的行程返回对应匹配相同目的地的行程
-    //请求数据：userId 返回数据：相同目的地的travel
+    //请求数据：userId 返回数据：不同userId、相同目的地的未匹配未过期的travel
     //！！还没测试
     @RequestMapping(value = "/show"
             , method = RequestMethod.POST
@@ -166,9 +171,10 @@ public class TravelController {
                 Travel travel1 = travelService.findByUserId(userId);
                 String destProv_temp = travel1.getDestPosProv();
                 String destCity_temp = travel1.getDestPosCity();
+                List<Travel> list = new ArrayList<Travel>();
                 try {
-                    List<Travel> list = new ArrayList<Travel>();
-                    list = travelService.getTraListOfSamePos(destProv_temp, destCity_temp);
+
+                    list = travelService.getTraListOfSamePos(userId, destProv_temp, destCity_temp);
                 } catch (Exception e) {
                     e.printStackTrace();
                     responseObj.setCode(ResponseObj.FAILED);
@@ -178,6 +184,7 @@ public class TravelController {
 
                 responseObj.setCode(ResponseObj.OK);
                 responseObj.setMsg("成功返回相同目的地的未过期行程！");
+                responseObj.setData(list);
                 return new GsonUtils().toJson(responseObj);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -205,6 +212,34 @@ public class TravelController {
         }
         Integer userId1 = Integer.parseInt(request.getParameter("userId"));
         Integer travelId2 = Integer.parseInt(request.getParameter("travelId"));
-
+        if (userService.findById(userId1) == null || travelService.findById(travelId2) == null) {
+            responseObj.setCode(ResponseObj.FAILED);
+            responseObj.setMsg("用户id或点赞的行程id不存在！");
+            return new GsonUtils().toJson(responseObj);
+        }
+        //将userId1和travelId2添加进like表
+        travelService.addLike(userId1, travelId2);
+        //查找userId1发布的未过期的travelId，判断是否被travelId2对应的userId2点赞过，
+        //是，匹配成功；否，只返回点赞成功的json
+        Integer travelId1 = travelService.findByUserId(userId1).getId();
+        Integer userId2 = travelService.findById(travelId2).getUserId();
+        if (travelService.ifLike(userId2, travelId1) == 0) {
+            //匹配不成功
+            responseObj.setCode(ResponseObj.OK);
+            responseObj.setMsg("点赞成功！");
+            return new GsonUtils().toJson(responseObj);
+        } else {
+            //匹配成功
+            //添加2条message记录
+            //Date now = new Date();
+            //SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            //String time_str = sdf.format(now);
+            travelService.addMessage(userId1, userId2, message, new Date());
+            travelService.addMessage(userId2, userId1, message, new Date());
+            responseObj.setCode(ResponseObj.OK);
+            responseObj.setMsg("匹配成功！");
+            return new GsonUtils().toJson(responseObj);
+        }
     }
+
 }

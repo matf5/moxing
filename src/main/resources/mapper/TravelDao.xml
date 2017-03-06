@@ -157,12 +157,46 @@
         user_id = #{userId} AND is_expired = 0
     </select>
 
-    <select id="getTraListOfSamePos" resultType="Travel" parameterType="String">
+    <select id="getTraListOfSamePos" resultType="Travel">
         SELECT
         *
         FROM
         `travel`
         WHERE
-        dest_pos_prov = #{destPosProv} AND dest_pos_city = destPosCity
+        user_id != #{0} AND dest_pos_prov = #{1} AND dest_pos_city = #{2} AND state = 0 AND is_expired = 0
     </select>
+
+    <select id="findById" resultType="Travel" parameterType="Integer">
+        SELECT
+        *
+        FROM
+        `travel`
+        WHERE
+        id = #{id} AND is_expired = 0
+    </select>
+
+    <insert id="addLike" parameterType="Integer">
+        INSERT INTO
+        `like`
+        (`user_id`,`travel_id`)
+        VALUES
+        (#{userId},#{travelId})
+    </insert>
+
+    <select id="ifLike" resultType="Integer" parameterType="Integer">
+        SELECT
+        id
+        FROM
+        `like`
+        WHERE
+        user_id = #{userId2} AND travel_id = #{travelId1}
+    </select>
+
+    <insert id="addMessage">
+        INSERT INTO
+        `message`
+        (`send_id`,`rece_id`,`content`,`cDate`)
+        VALUES
+        (#{0},#{1},#{2},#{3})
+    </insert>
 </mapper>
