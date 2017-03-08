@@ -40,6 +40,32 @@ public class Travel {
     private Date cdate;
 
     private Boolean isExpired;
+    private UserInfo userInfo;
+    private Label label;
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
+    }
+
+    public Label getLabel() {
+        return label;
+    }
+
+    public void setLabel(Label label) {
+        this.label = label;
+    }
+
+    public Boolean getExpired() {
+        return isExpired;
+    }
+
+    public void setExpired(Boolean expired) {
+        isExpired = expired;
+    }
 
     public Integer getId() {
         return id;
