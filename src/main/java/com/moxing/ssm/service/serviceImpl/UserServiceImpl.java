@@ -1,7 +1,6 @@
 package com.moxing.ssm.service.serviceImpl;
 
 import com.moxing.ssm.dao.UserDao;
-import com.moxing.ssm.exception.OtherThingsException;
 import com.moxing.ssm.model.User;
 import com.moxing.ssm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +28,9 @@ public class UserServiceImpl implements UserService {
 
     public User findUser(User user) throws Exception {
         return userDao.findOneByPhoneNum(user.getPhoneNum());
+    }
+
+    public User findById(Integer id) throws Exception {
+        return userDao.findById(id);
     }
 }

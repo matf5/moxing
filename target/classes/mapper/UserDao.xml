@@ -14,6 +14,14 @@
     phone_num = #{phoneNum}
     </select>
 
+    <select id="findById" resultType="User" parameterType="Integer">
+        SELECT
+        *
+        FROM
+        `user`
+        WHERE
+        id = #{id} AND is_valid = 1
+    </select>
     <!--增加语句-->
     <insert id="add" parameterType="com.moxing.ssm.model.User">
         INSERT INTO
