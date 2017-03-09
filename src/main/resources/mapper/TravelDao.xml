@@ -21,6 +21,22 @@
         <result column="latitude" property="latitude" jdbcType="VARCHAR" />
         <result column="cDate" property="cdate" jdbcType="TIMESTAMP" />
         <result column="is_expired" property="isExpired" jdbcType="BIT" />
+        <association property="userInfo" resultMap="userResult" />
+    </resultMap>
+
+    <resultMap id="userResult" type="UserInfo">
+        <id property="id" column="id" />
+        <result property="phoneNum" column="phone_num" />
+        <result property="nickname" column="nickname" />
+        <result property="headimgUrl" column="headimg_url" />
+        <result property="posCity" column="pos_city" />
+        <result property="posProv" column="pos_prov" />
+        <result property="longitude" column="longitude" />
+        <result property="latitude" column="latitude" />
+        <result property="sex" column="sex" />
+        <result property="userId" column="user_id" />
+        <result property="cdate" column="cDate" />
+        <result property="mdate" column="mDate" />
     </resultMap>
 
     <sql id="Base_Column_List" >
@@ -157,11 +173,12 @@
         user_id = #{userId} AND is_expired = 0
     </select>
 
-    <select id="getTraListOfSamePos" resultType="Travel">
+    <select id="getTraListOfSamePos" resultMap="BaseResultMap">
         SELECT
         *
         FROM
         `travel`
+        LEFT OUTER JOIN userinfo USING (user_id)
         WHERE
         user_id != #{0} AND dest_pos_prov = #{1} AND dest_pos_city = #{2} AND state = 0 AND is_expired = 0
     </select>

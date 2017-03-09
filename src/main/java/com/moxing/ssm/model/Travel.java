@@ -41,6 +41,10 @@ public class Travel {
 
     private Boolean isExpired;
 
+    private UserInfo userInfo;
+
+    private Label label;
+
     public Integer getId() {
         return id;
     }
@@ -175,5 +179,21 @@ public class Travel {
 
     public void setIsExpired(Boolean isExpired) {
         this.isExpired = isExpired;
+    }
+
+    public Label getLabel() {
+        return label;
+    }
+
+    public void setLabel(Label label) {
+        this.label = label;
+    }
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
     }
 }

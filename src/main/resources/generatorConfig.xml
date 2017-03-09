@@ -33,5 +33,6 @@
         <table tableName="userInfo" domainObjectName="UserInfo" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false"></table>
+
     </context>
 </generatorConfiguration>
