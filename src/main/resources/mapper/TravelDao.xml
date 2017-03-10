@@ -22,6 +22,7 @@
         <result column="cDate" property="cdate" jdbcType="TIMESTAMP" />
         <result column="is_expired" property="isExpired" jdbcType="BIT" />
         <association property="userInfo" resultMap="userResult" />
+        <association property="label" resultMap="labelResult" />
     </resultMap>
 
     <resultMap id="userResult" type="UserInfo">
@@ -37,6 +38,33 @@
         <result property="userId" column="user_id" />
         <result property="cdate" column="cDate" />
         <result property="mdate" column="mDate" />
+    </resultMap>
+
+    <resultMap id="labelResult" type="Label">
+        <id property="id" column="id" />
+        <result property="userId" column="user_id" />
+        <result property="extraversionScore" column="extraversion_score" />
+        <result property="agreeablenessScore" column="agreeableness_score" />
+        <result property="conscientiousnessScore" column="conscientiousness_score" />
+        <result property="warmth" column="warmth" />
+        <result property="gregariousness" column="gregariousness" />
+        <result property="assertiveness" column="assertiveness" />
+        <result property="excitementSeeking" column="excitement_seeking" />
+        <result property="activity" column="activity" />
+        <result property="positiveEmotions" column="positive_emotions" />
+        <result property="trust" column="trust" />
+        <result property="straightforwardness" column="straightforwardness" />
+        <result property="altruism" column="altruism" />
+        <result property="compliance" column="compliance" />
+        <result property="modesty" column="modesty" />
+        <result property="tenderMindedness" column="tender-mindedness" />
+        <result property="competence" column="competence" />
+        <result property="order" column="order0" />
+        <result property="dutifulness" column="dutifulness" />
+        <result property="achievementStriving" column="achievement_striving" />
+        <result property="selfDiscipline" column="mDate" />
+        <result property="deliberation" column="deliberation" />
+
     </resultMap>
 
     <sql id="Base_Column_List" >
@@ -178,9 +206,9 @@
         *
         FROM
         `travel`
-        LEFT OUTER JOIN userinfo USING (user_id)
+        LEFT OUTER JOIN (userinfo,label) ON (travel.user_id = userinfo.user_id AND travel.user_id = label.user_id)
         WHERE
-        user_id != #{0} AND dest_pos_prov = #{1} AND dest_pos_city = #{2} AND state = 0 AND is_expired = 0
+        travel.user_id != #{0} AND dest_pos_prov = #{1} AND dest_pos_city = #{2} AND state = 0 AND is_expired = 0
     </select>
 
     <select id="findById" resultType="Travel" parameterType="Integer">
