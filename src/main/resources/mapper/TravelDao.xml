@@ -225,16 +225,16 @@
         `like`
         (`user_id`,`travel_id`)
         VALUES
-        (#{userId},#{travelId})
+        (#{0},#{1})
     </insert>
 
     <select id="ifLike" resultType="Integer" parameterType="Integer">
         SELECT
-        id
+        IFNULL(MAX(id),0)
         FROM
         `like`
         WHERE
-        user_id = #{userId2} AND travel_id = #{travelId1}
+        user_id = #{0} AND travel_id = #{1}
     </select>
 
     <insert id="addMessage">
