@@ -19,7 +19,7 @@ public class TravelServiceImpl implements TravelService {
     private TravelDao travelDao;
 
     public void add(Travel travel) throws Exception {
-        int result = 0; //受影响的行数默认为0
+        int result; //受影响的行数默认为0
         try {
             result = travelDao.add(travel);
         } catch (Exception e) {
@@ -43,7 +43,7 @@ public class TravelServiceImpl implements TravelService {
     }
 
     public void addLike(Integer userId, Integer travelId) throws Exception {
-        int result = 0;
+        int result;
         try {
             result = travelDao.addLike(userId, travelId);
         } catch (Exception e) {
@@ -55,9 +55,10 @@ public class TravelServiceImpl implements TravelService {
     }
 
     public int ifLike(Integer userId2, Integer travelId1) throws Exception {
-        int result = 0;
+        int result;
         try {
             result = travelDao.ifLike(userId2, travelId1);
+
         } catch (Exception e) {
             System.out.println("匹配like表失败");
             throw new OtherThingsException(e);
