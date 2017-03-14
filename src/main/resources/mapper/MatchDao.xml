@@ -24,4 +24,13 @@
         m.second_user_id = #{userId}
     </select>
 
+    <select id="getMessage" resultType="String">
+        SELECT
+        message.content
+        FROM
+        `message`
+        WHERE
+        (message.send_id = #{0} AND message.rece_id = #{1}) OR (message.send_id = #{1} AND message.rece_id = #{0})
+    </select>
+
 </mapper>

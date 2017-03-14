@@ -38,4 +38,9 @@ public class MatchServiceImpl {
 
         return matchDao.getMatchUserInfo2(userId);
     }
+
+    public List<String> getMessage(Integer userId, Integer anotherUserId) throws Exception {
+
+        return matchDao.getMessage(userId, anotherUserId);
+    }
 }

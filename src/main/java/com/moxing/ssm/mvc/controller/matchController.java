@@ -33,7 +33,7 @@ public class matchController {
             , method = RequestMethod.POST
             , produces = "application/json; charset=utf-8")
     @ResponseBody
-    public String query(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String queryMatch(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         responseObj = new ResponseObj<UserInfo>();
         Integer userId = Integer.parseInt(request.getParameter("userId"));
@@ -47,6 +47,42 @@ public class matchController {
                 List<UserInfo> list = new ArrayList<UserInfo>();
                 list = matchService.getMatchUserInfo1(userId);
                 list.addAll(matchService.getMatchUserInfo2(userId));
+                responseObj.setCode(ResponseObj.OK);
+                responseObj.setMsg("成功返回与自己有关的所有联系人信息！");
+                responseObj.setData(list);
+                return new GsonUtils().toJson(responseObj);
+            } catch (Exception e) {
+                e.printStackTrace();
+                responseObj.setCode(ResponseObj.FAILED);
+                responseObj.setMsg("错误：返回不了与自己有关的所有联系人信息！");
+                return new GsonUtils().toJson(responseObj);
+            }
+        }
+    }
+
+    //查询消息
+    //post : userId, anotherUserId
+    // 从message中查找两人之间的所有消息
+    //返回相关消息的集合
+    @RequestMapping(value = "/queryMessage"
+            , method = RequestMethod.POST
+            , produces = "application/json; charset=utf-8")
+    @ResponseBody
+    public String queryMessage(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        responseObj = new ResponseObj<String>();
+        Integer userId = Integer.parseInt(request.getParameter("userId"));
+        Integer anotherUserId = Integer.parseInt(request.getParameter("anotherUserId"));
+        if (userId == null || anotherUserId == null) {
+            responseObj.setCode(ResponseObj.EMPTY);
+            responseObj.setMsg("用户id不能为空！");
+            return new GsonUtils().toJson(responseObj);
+        }else {
+
+            try {
+
+                List<String> list = new ArrayList<String>();
+                list = matchService.getMessage(userId, anotherUserId);
                 responseObj.setCode(ResponseObj.OK);
                 responseObj.setMsg("成功返回与自己有关的所有联系人信息！");
                 responseObj.setData(list);

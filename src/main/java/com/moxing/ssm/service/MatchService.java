@@ -14,4 +14,6 @@ public interface MatchService {
     List<UserInfo> getMatchUserInfo1(Integer userId) throws Exception;
 
     List<UserInfo> getMatchUserInfo2(Integer userId) throws Exception;
+
+    List<String> getMessage(Integer userId, Integer anotherUserId) throws Exception;
 }

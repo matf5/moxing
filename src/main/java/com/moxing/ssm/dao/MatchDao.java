@@ -15,4 +15,6 @@ public interface MatchDao {
 
     List<UserInfo> getMatchUserInfo2(Integer userId);
 
+    List<String> getMessage(Integer userId, Integer anotherUserId);
+
 }
