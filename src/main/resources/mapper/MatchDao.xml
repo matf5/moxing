@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace指定我们的到具体的bean -->
+<mapper namespace="com.moxing.ssm.dao.MatchDao">
+
+    <select id="getMatchUserInfo1" resultType="com.moxing.ssm.model.UserInfo">
+        SELECT
+        *
+        FROM
+        `userinfo`
+        RIGHT OUTER JOIN `match` AS m ON (userinfo.user_id = m.second_user_id)
+        WHERE
+        m.first_user_id = #{userId}
+    </select>
+
+    <select id="getMatchUserInfo2" resultType="com.moxing.ssm.model.UserInfo">
+        SELECT
+        *
+        FROM
+        `userinfo`
+        RIGHT OUTER JOIN `match` AS m ON (userinfo.user_id = m.first_user_id)
+        WHERE
+        m.second_user_id = #{userId}
+    </select>
+
+</mapper>

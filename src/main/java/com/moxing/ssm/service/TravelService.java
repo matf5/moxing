@@ -21,4 +21,6 @@ public interface TravelService {
     int ifLike(Integer userId2, Integer travelId1) throws Exception;
 
     void addMessage(Integer userId1, Integer userId2, String message, Date now) throws Exception;
+
+
 }

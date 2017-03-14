@@ -2,6 +2,7 @@ package com.moxing.ssm.mvc.controller;
 
 import com.moxing.ssm.model.ResponseObj;
 import com.moxing.ssm.model.Travel;
+import com.moxing.ssm.service.serviceImpl.MatchServiceImpl;
 import com.moxing.ssm.service.serviceImpl.TravelServiceImpl;
 import com.moxing.ssm.service.serviceImpl.UserServiceImpl;
 import com.moxing.ssm.utils.GsonUtils;
@@ -31,6 +32,8 @@ public class TravelController {
     private TravelServiceImpl travelService;    //自动载入Service对象
     @Autowired
     private UserServiceImpl userService;
+    @Autowired
+    private MatchServiceImpl matchService;
 
     @RequestMapping(value = "/publish"
             , method = RequestMethod.POST
@@ -205,13 +208,16 @@ public class TravelController {
     @ResponseBody
     public String like(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        if(request.getParameter("userId") == null || request.getParameter("travelId") == null) {
+        //System.out.println("!!!!!!!!!"+request.getParameter("userId"));
+        //System.out.println("~~~~~~~~~"+request.getParameter("travelId"));
+        Integer userId1 = Integer.parseInt(request.getParameter("userId"));
+        Integer travelId2 = Integer.parseInt(request.getParameter("travelId"));
+        if(userId1 == null || travelId2 == null) {
             responseObj.setCode(ResponseObj.EMPTY);
             responseObj.setMsg("用户id或点赞的行程id不能为空！");
             return new GsonUtils().toJson(responseObj);
         }
-        Integer userId1 = Integer.parseInt(request.getParameter("userId"));
-        Integer travelId2 = Integer.parseInt(request.getParameter("travelId"));
+
         if (userService.findById(userId1) == null || travelService.findById(travelId2) == null) {
             responseObj.setCode(ResponseObj.FAILED);
             responseObj.setMsg("用户id或点赞的行程id不存在！");
@@ -230,12 +236,14 @@ public class TravelController {
             return new GsonUtils().toJson(responseObj);
         } else {
             //匹配成功
-            //添加2条message记录
+            //添加1条message记录
+            //添加用户1和2进match表
             //Date now = new Date();
             //SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             //String time_str = sdf.format(now);
             travelService.addMessage(userId1, userId2, message, new Date());
-            travelService.addMessage(userId2, userId1, message, new Date());
+            matchService.addMatch(userId1, userId2);
+            //travelService.addMessage(userId2, userId1, message, new Date());
             responseObj.setCode(ResponseObj.OK);
             responseObj.setMsg("匹配成功！");
             return new GsonUtils().toJson(responseObj);

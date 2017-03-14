@@ -70,7 +70,7 @@ public class TravelServiceImpl implements TravelService {
     }
 
     public void addMessage(Integer userId1, Integer userId2, String message, Date now) throws Exception {
-        int result = 0; //受影响的行数默认为0
+        int result; //受影响的行数默认为0
         try {
             result = travelDao.addMessage(userId1, userId2, message, now);
         } catch (Exception e) {
@@ -80,4 +80,5 @@ public class TravelServiceImpl implements TravelService {
         if (result > 0)
             System.out.println("添加message成功");
     }
+
 }
