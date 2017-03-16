@@ -89,6 +89,7 @@ public class TravelController {
             return new GsonUtils().toJson(responseObj);
         } else {
             try {
+                travel.setLikeNum(0);//发布的时候点赞数是0
                 travelService.add(travel);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -208,8 +209,6 @@ public class TravelController {
     @ResponseBody
     public String like(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        //System.out.println("!!!!!!!!!"+request.getParameter("userId"));
-        //System.out.println("~~~~~~~~~"+request.getParameter("travelId"));
         Integer userId1 = Integer.parseInt(request.getParameter("userId"));
         Integer travelId2 = Integer.parseInt(request.getParameter("travelId"));
         if(userId1 == null || travelId2 == null) {
@@ -225,6 +224,8 @@ public class TravelController {
         }
         //将userId1和travelId2添加进like表
         travelService.addLike(userId1, travelId2);
+        //更新travel表的点赞数like_num
+        travelService.updateLike(travelId2);
         //查找userId1发布的未过期的travelId，判断是否被travelId2对应的userId2点赞过，
         //是，匹配成功；否，只返回点赞成功的json
         Integer travelId1 = travelService.findByUserId(userId1).getId();

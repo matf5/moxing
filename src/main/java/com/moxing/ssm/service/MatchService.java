@@ -1,5 +1,6 @@
 package com.moxing.ssm.service;
 
+import com.moxing.ssm.model.Message;
 import com.moxing.ssm.model.UserInfo;
 
 import java.util.List;
@@ -15,5 +16,5 @@ public interface MatchService {
 
     List<UserInfo> getMatchUserInfo2(Integer userId) throws Exception;
 
-    List<String> getMessage(Integer userId, Integer anotherUserId) throws Exception;
+    List<Message> getMessage(Integer userId, Integer anotherUserId) throws Exception;
 }

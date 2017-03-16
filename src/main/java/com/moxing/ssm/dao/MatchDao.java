@@ -1,5 +1,6 @@
 package com.moxing.ssm.dao;
 
+import com.moxing.ssm.model.Message;
 import com.moxing.ssm.model.UserInfo;
 
 import java.util.List;
@@ -15,6 +16,6 @@ public interface MatchDao {
 
     List<UserInfo> getMatchUserInfo2(Integer userId);
 
-    List<String> getMessage(Integer userId, Integer anotherUserId);
+    List<Message> getMessage(Integer userId, Integer anotherUserId);
 
 }

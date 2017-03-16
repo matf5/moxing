@@ -24,9 +24,9 @@
         m.second_user_id = #{userId}
     </select>
 
-    <select id="getMessage" resultType="String">
+    <select id="getMessage" resultType="com.moxing.ssm.model.Message">
         SELECT
-        message.content
+        *
         FROM
         `message`
         WHERE

@@ -21,6 +21,8 @@
         <result column="latitude" property="latitude" jdbcType="VARCHAR" />
         <result column="cDate" property="cdate" jdbcType="TIMESTAMP" />
         <result column="is_expired" property="isExpired" jdbcType="BIT" />
+        <result column="like_num" property="likeNum" jdbcType="INTEGER" />
+        <result column="flag" property="flag" jdbcType="BIT" />
         <association property="userInfo" resultMap="userResult" />
         <association property="label" resultMap="labelResult" />
     </resultMap>
@@ -70,7 +72,7 @@
     <sql id="Base_Column_List" >
         id, user_id, friend_id, title, description, begin_date, end_date, begin_pos_prov,
         begin_pos_city, dest_pos_prov, dest_pos_city, img_url, state, longitude,
-        latitude, cDate, is_expired
+        latitude, cDate, is_expired, like_num
     </sql>
     <!--增加语句-->
     <insert id="add" parameterType="com.moxing.ssm.model.Travel" >
@@ -127,6 +129,9 @@
             <if test="isExpired != null" >
                 is_expired,
             </if>
+            <if test="likeNum != null" >
+                like_num,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="id != null" >
@@ -180,6 +185,9 @@
             <if test="isExpired != null" >
                 #{isExpired,jdbcType=BIT},
             </if>
+            <if test="likeNum != null" >
+                #{likeNum,jdbcType=INTEGER},
+            </if>
         </trim>
     </insert>
     <insert id="addBySelective" parameterType="com.moxing.ssm.model.Travel">
@@ -203,12 +211,19 @@
 
     <select id="getTraListOfSamePos" resultMap="BaseResultMap">
         SELECT
-        *
+        travel.*,
+		userinfo.phone_num,userinfo.nickname,userinfo.headimg_url,userinfo.pos_city,userinfo.pos_prov,
+		userinfo.sex,userinfo.longitude,userinfo.latitude,userinfo.cDate,userinfo.mDate,
+		label.extraversion_score,label.agreeableness_score, label.conscientiousness_score,
+		if(travel.id=l.travel_id,1,0) as flag
         FROM
         `travel`
-        LEFT OUTER JOIN (userinfo,label) ON (travel.user_id = userinfo.user_id AND travel.user_id = label.user_id)
+        LEFT OUTER JOIN (userinfo,label,`like` as l)
+        ON (travel.user_id = userinfo.user_id AND travel.user_id = label.user_id AND
+        l.user_id = #{0} AND travel.id = l.travel_id)
         WHERE
         travel.user_id != #{0} AND dest_pos_prov = #{1} AND dest_pos_city = #{2} AND state = 0 AND is_expired = 0
+
     </select>
 
     <select id="findById" resultType="Travel" parameterType="Integer">
@@ -252,4 +267,10 @@
         VALUES
         (#{0},#{1})
     </insert>
+
+    <update id="updateLike" parameterType="Integer" >
+        update travel
+        set like_num = like_num + 1
+        where id = #{0}
+    </update>
 </mapper>

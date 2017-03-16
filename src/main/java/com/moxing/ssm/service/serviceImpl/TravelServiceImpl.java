@@ -70,7 +70,7 @@ public class TravelServiceImpl implements TravelService {
     }
 
     public void addMessage(Integer userId1, Integer userId2, String message, Date now) throws Exception {
-        int result; //受影响的行数默认为0
+        int result;
         try {
             result = travelDao.addMessage(userId1, userId2, message, now);
         } catch (Exception e) {
@@ -81,4 +81,15 @@ public class TravelServiceImpl implements TravelService {
             System.out.println("添加message成功");
     }
 
+    public void updateLike(Integer travelId2) throws Exception {
+        int result = 0; //受影响的行数默认为0
+        try {
+            result = travelDao.updateLike(travelId2);
+        } catch (Exception e) {
+            System.out.println("更新点赞数失败");
+
+        }
+        if (result > 0)
+            System.out.println("更新点赞数成功");
+    }
 }

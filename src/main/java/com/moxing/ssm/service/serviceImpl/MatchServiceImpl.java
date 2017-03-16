@@ -2,6 +2,7 @@ package com.moxing.ssm.service.serviceImpl;
 
 import com.moxing.ssm.dao.MatchDao;
 import com.moxing.ssm.exception.OtherThingsException;
+import com.moxing.ssm.model.Message;
 import com.moxing.ssm.model.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,7 +40,7 @@ public class MatchServiceImpl {
         return matchDao.getMatchUserInfo2(userId);
     }
 
-    public List<String> getMessage(Integer userId, Integer anotherUserId) throws Exception {
+    public List<Message> getMessage(Integer userId, Integer anotherUserId) throws Exception {
 
         return matchDao.getMessage(userId, anotherUserId);
     }

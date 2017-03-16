@@ -45,6 +45,10 @@ public class Travel {
 
     private Label label;
 
+    private Integer likeNum;
+
+    private Boolean flag;
+
     public Integer getId() {
         return id;
     }
@@ -195,5 +199,21 @@ public class Travel {
 
     public void setUserInfo(UserInfo userInfo) {
         this.userInfo = userInfo;
+    }
+
+    public Integer getLikeNum() {
+        return likeNum;
+    }
+
+    public void setLikeNum(Integer likeNum) {
+        this.likeNum = likeNum;
+    }
+
+    public Boolean getFlag() {
+        return flag;
+    }
+
+    public void setFlag(Boolean flag) {
+        this.flag = flag;
     }
 }

@@ -1,5 +1,6 @@
 package com.moxing.ssm.mvc.controller;
 
+import com.moxing.ssm.model.Message;
 import com.moxing.ssm.model.ResponseObj;
 import com.moxing.ssm.model.UserInfo;
 import com.moxing.ssm.service.serviceImpl.MatchServiceImpl;
@@ -63,14 +64,14 @@ public class matchController {
     //查询消息
     //post : userId, anotherUserId
     // 从message中查找两人之间的所有消息
-    //返回相关消息的集合
+    //返回相关消息和时间的集合
     @RequestMapping(value = "/queryMessage"
             , method = RequestMethod.POST
             , produces = "application/json; charset=utf-8")
     @ResponseBody
     public String queryMessage(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        responseObj = new ResponseObj<String>();
+        responseObj = new ResponseObj<Message>();
         Integer userId = Integer.parseInt(request.getParameter("userId"));
         Integer anotherUserId = Integer.parseInt(request.getParameter("anotherUserId"));
         if (userId == null || anotherUserId == null) {
@@ -81,7 +82,7 @@ public class matchController {
 
             try {
 
-                List<String> list = new ArrayList<String>();
+                List<Message> list = new ArrayList<Message>();
                 list = matchService.getMessage(userId, anotherUserId);
                 responseObj.setCode(ResponseObj.OK);
                 responseObj.setMsg("成功返回与自己有关的所有联系人信息！");
