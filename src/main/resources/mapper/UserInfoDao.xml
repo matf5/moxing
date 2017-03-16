@@ -174,4 +174,5 @@
       pos_prov = #{posProv,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
 </mapper>

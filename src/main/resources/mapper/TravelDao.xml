@@ -21,12 +21,58 @@
         <result column="latitude" property="latitude" jdbcType="VARCHAR" />
         <result column="cDate" property="cdate" jdbcType="TIMESTAMP" />
         <result column="is_expired" property="isExpired" jdbcType="BIT" />
+        <result column="like_num" property="likeNum" jdbcType="INTEGER" />
+        <result column="flag" property="flag" jdbcType="BIT" />
+        <association property="userInfo" resultMap="userResult" />
+        <association property="label" resultMap="labelResult" />
+    </resultMap>
+
+    <resultMap id="userResult" type="UserInfo">
+        <id property="id" column="id" />
+        <result property="phoneNum" column="phone_num" />
+        <result property="nickname" column="nickname" />
+        <result property="headimgUrl" column="headimg_url" />
+        <result property="posCity" column="pos_city" />
+        <result property="posProv" column="pos_prov" />
+        <result property="longitude" column="longitude" />
+        <result property="latitude" column="latitude" />
+        <result property="sex" column="sex" />
+        <result property="userId" column="user_id" />
+        <result property="cdate" column="cDate" />
+        <result property="mdate" column="mDate" />
+    </resultMap>
+
+    <resultMap id="labelResult" type="Label">
+        <id property="id" column="id" />
+        <result property="userId" column="user_id" />
+        <result property="extraversionScore" column="extraversion_score" />
+        <result property="agreeablenessScore" column="agreeableness_score" />
+        <result property="conscientiousnessScore" column="conscientiousness_score" />
+        <result property="warmth" column="warmth" />
+        <result property="gregariousness" column="gregariousness" />
+        <result property="assertiveness" column="assertiveness" />
+        <result property="excitementSeeking" column="excitement_seeking" />
+        <result property="activity" column="activity" />
+        <result property="positiveEmotions" column="positive_emotions" />
+        <result property="trust" column="trust" />
+        <result property="straightforwardness" column="straightforwardness" />
+        <result property="altruism" column="altruism" />
+        <result property="compliance" column="compliance" />
+        <result property="modesty" column="modesty" />
+        <result property="tenderMindedness" column="tender-mindedness" />
+        <result property="competence" column="competence" />
+        <result property="order" column="order0" />
+        <result property="dutifulness" column="dutifulness" />
+        <result property="achievementStriving" column="achievement_striving" />
+        <result property="selfDiscipline" column="mDate" />
+        <result property="deliberation" column="deliberation" />
+
     </resultMap>
 
     <sql id="Base_Column_List" >
         id, user_id, friend_id, title, description, begin_date, end_date, begin_pos_prov,
         begin_pos_city, dest_pos_prov, dest_pos_city, img_url, state, longitude,
-        latitude, cDate, is_expired
+        latitude, cDate, is_expired, like_num
     </sql>
     <!--增加语句-->
     <insert id="add" parameterType="com.moxing.ssm.model.Travel" >
@@ -83,6 +129,9 @@
             <if test="isExpired != null" >
                 is_expired,
             </if>
+            <if test="likeNum != null" >
+                like_num,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="id != null" >
@@ -136,6 +185,9 @@
             <if test="isExpired != null" >
                 #{isExpired,jdbcType=BIT},
             </if>
+            <if test="likeNum != null" >
+                #{likeNum,jdbcType=INTEGER},
+            </if>
         </trim>
     </insert>
     <insert id="addBySelective" parameterType="com.moxing.ssm.model.Travel">
@@ -148,16 +200,30 @@
         #{destPosProv},#{destPosCity},#{longitude},#{latitude}, #{description},#{imgUrl})
     </insert>
 
-    <select id="findByUserId" resultType="Travel
-    </select>
-
-    <select id="getTraListOfSamePos" resultType="Travel">
+    <select id="findByUserId" resultType="Travel" parameterType="Integer">
         SELECT
         *
         FROM
         `travel`
         WHERE
-        user_id != #{0} AND dest_pos_prov = #{1} AND dest_pos_city = #{2} AND state = 0 AND is_expired = 0
+        user_id = #{userId} AND is_expired = 0
+    </select>
+
+    <select id="getTraListOfSamePos" resultMap="BaseResultMap">
+        SELECT
+        travel.*,
+        userinfo.phone_num,userinfo.nickname,userinfo.headimg_url,userinfo.pos_city,userinfo.pos_prov,
+        userinfo.sex,userinfo.longitude,userinfo.latitude,userinfo.cDate,userinfo.mDate,
+        label.extraversion_score,label.agreeableness_score, label.conscientiousness_score,
+        if(travel.id=l.travel_id,1,0) as flag
+        FROM
+        `travel`
+        LEFT OUTER JOIN (userinfo,label,`like` as l)
+        ON (travel.user_id = userinfo.user_id AND travel.user_id = label.user_id AND
+        l.user_id = #{0} AND travel.id = l.travel_id)
+        WHERE
+        travel.user_id != #{0} AND dest_pos_prov = #{1} AND dest_pos_city = #{2} AND state = 0 AND is_expired = 0
+
     </select>
 
     <select id="findById" resultType="Travel" parameterType="Integer">
@@ -168,28 +234,22 @@
         WHERE
         id = #{id} AND is_expired = 0
     </select>
-" parameterType="Integer">
-        SELECT
-        *
-        FROM
-        `travel`
-        WHERE
-        user_id = #{userId} AND is_expired = 0
+
     <insert id="addLike" parameterType="Integer">
         INSERT INTO
         `like`
         (`user_id`,`travel_id`)
         VALUES
-        (#{userId},#{travelId})
+        (#{0},#{1})
     </insert>
 
     <select id="ifLike" resultType="Integer" parameterType="Integer">
         SELECT
-        id
+        IFNULL(MAX(id),0)
         FROM
         `like`
         WHERE
-        user_id = #{userId2} AND travel_id = #{travelId1}
+        user_id = #{0} AND travel_id = #{1}
     </select>
 
     <insert id="addMessage">
@@ -199,4 +259,18 @@
         VALUES
         (#{0},#{1},#{2},#{3})
     </insert>
+
+    <insert id="addMatch">
+        INSERT INTO
+        `match`
+        (`first_user_id`,`second_user_id`)
+        VALUES
+        (#{0},#{1})
+    </insert>
+
+    <update id="updateLike" parameterType="Integer" >
+        update travel
+        set like_num = like_num + 1
+        where id = #{0}
+    </update>
 </mapper>

@@ -175,18 +175,4 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <insert id="insertLabel" parameterType="com.moxing.ssm.model.Label" >
-    insert into label ( user_id, extraversion_score, agreeableness_score, conscientiousness_score,
-    warmth, gregariousness, assertiveness, excitement_seeking, activity, positive_emotions,
-    trust, straightforwardness, altruism, compliance, modesty, tender-mindedness,
-    competence, order0, dutifulness, achievement_striving, self-discipline, deliberation)
-    values ( #{userId,jdbcType=INTEGER}, #{extraversionScore,jdbcType=INTEGER},
-    #{agreeablenessScore,jdbcType=INTEGER}, #{conscientiousnessScore,jdbcType=INTEGER},
-    #{warmth,jdbcType=BIT}, #{gregariousness,jdbcType=BIT}, #{assertiveness,jdbcType=BIT}, #{excitementSeeking,jdbcType=BIT},
-    #{activity,jdbcType=BIT}, #{positiveemotions,jdbcType=BIT},
-    #{trust,jdbcType=BIT}, #{straightforwardness,jdbcType=BIT}, #{altruism,jdbcType=BIT}, #{compliance,jdbcType=BIT},
-    #{modesty,jdbcType=BIT}, #{tenderMindedness,jdbcType=BIT},
-    #{competence,jdbcType=BIT}, #{order,jdbcType=BIT}, #{dutifulness,jdbcType=BIT}, #{achievementStriving,jdbcType=BIT},
-    #{selfDiscipline,jdbcType=BIT}, #{deliberation,jdbcType=BIT})
-  </insert>
 </mapper>

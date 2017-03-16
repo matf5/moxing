@@ -152,8 +152,8 @@ public class TravelController {
     }
 
     //根据用户发布的行程返回对应匹配相同目的地的行程
-    //请求数据：userId 返回数据：不同userId、相同目的地的未匹配未过期的travel
-    //！！还没测试
+    //请求数据：userId
+    // 返回数据：不同userId、相同目的地的未匹配未过期的travel
     @RequestMapping(value = "/show"
             , method = RequestMethod.POST
             , produces = "application/json; charset=utf-8")
