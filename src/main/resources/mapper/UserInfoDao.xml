@@ -7,16 +7,14 @@
     <result column="nickname" property="nickname" jdbcType="VARCHAR" />
     <result column="headimg_url" property="headimgUrl" jdbcType="VARCHAR" />
     <result column="pos_city" property="posCity" jdbcType="VARCHAR" />
-    <result column="longitude" property="longitude" jdbcType="VARCHAR" />
     <result column="sex" property="sex" jdbcType="BIT" />
-    <result column="latitude" property="latitude" jdbcType="VARCHAR" />
     <result column="cDate" property="cdate" jdbcType="TIMESTAMP" />
     <result column="mDate" property="mdate" jdbcType="TIMESTAMP" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="pos_prov" property="posProv" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, phone_num, nickname, headimg_url, pos_city, longitude, sex, latitude, cDate, 
+    id, phone_num, nickname, headimg_url, pos_city, sex, cDate,
     mDate, user_id, pos_prov
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -31,13 +29,13 @@
   </delete>
   <insert id="insert" parameterType="com.moxing.ssm.model.UserInfo" >
     insert into userinfo (id, phone_num, nickname, 
-      headimg_url, pos_city, longitude, 
-      sex, latitude, cDate, 
+      headimg_url, pos_city,
+      sex, cDate,
       mDate, user_id, pos_prov
       )
     values (#{id,jdbcType=INTEGER}, #{phoneNum,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
-      #{headimgUrl,jdbcType=VARCHAR}, #{posCity,jdbcType=VARCHAR}, #{longitude,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=BIT}, #{latitude,jdbcType=VARCHAR}, #{cdate,jdbcType=TIMESTAMP}, 
+      #{headimgUrl,jdbcType=VARCHAR}, #{posCity,jdbcType=VARCHAR},
+      #{sex,jdbcType=BIT}, #{cdate,jdbcType=TIMESTAMP},
       #{mdate,jdbcType=TIMESTAMP}, #{userId,jdbcType=INTEGER}, #{posProv,jdbcType=VARCHAR}
       )
   </insert>
@@ -56,17 +54,11 @@
       <if test="headimgUrl != null" >
         headimg_url,
       </if>
-      <if test="posCity != null" >
-        pos_city,
-      </if>
       <if test="longitude != null" >
         longitude,
       </if>
       <if test="sex != null" >
         sex,
-      </if>
-      <if test="latitude != null" >
-        latitude,
       </if>
       <if test="cdate != null" >
         cDate,
@@ -97,14 +89,8 @@
       <if test="posCity != null" >
         #{posCity,jdbcType=VARCHAR},
       </if>
-      <if test="longitude != null" >
-        #{longitude,jdbcType=VARCHAR},
-      </if>
       <if test="sex != null" >
         #{sex,jdbcType=BIT},
-      </if>
-      <if test="latitude != null" >
-        #{latitude,jdbcType=VARCHAR},
       </if>
       <if test="cdate != null" >
         #{cdate,jdbcType=TIMESTAMP},
@@ -135,14 +121,8 @@
       <if test="posCity != null" >
         pos_city = #{posCity,jdbcType=VARCHAR},
       </if>
-      <if test="longitude != null" >
-        longitude = #{longitude,jdbcType=VARCHAR},
-      </if>
       <if test="sex != null" >
         sex = #{sex,jdbcType=BIT},
-      </if>
-      <if test="latitude != null" >
-        latitude = #{latitude,jdbcType=VARCHAR},
       </if>
       <if test="cdate != null" >
         cDate = #{cdate,jdbcType=TIMESTAMP},
@@ -165,9 +145,7 @@
       nickname = #{nickname,jdbcType=VARCHAR},
       headimg_url = #{headimgUrl,jdbcType=VARCHAR},
       pos_city = #{posCity,jdbcType=VARCHAR},
-      longitude = #{longitude,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=BIT},
-      latitude = #{latitude,jdbcType=VARCHAR},
       cDate = #{cdate,jdbcType=TIMESTAMP},
       mDate = #{mdate,jdbcType=TIMESTAMP},
       user_id = #{userId,jdbcType=INTEGER},
