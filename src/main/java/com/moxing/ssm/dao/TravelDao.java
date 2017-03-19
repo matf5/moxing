@@ -32,4 +32,5 @@ public interface TravelDao {
 
     int addMessage(Integer userId1, Integer userId2, String message, Date now);
 
+    int updateLike(Integer travelId2);
 }

@@ -19,7 +19,7 @@ public class TravelServiceImpl implements TravelService {
     private TravelDao travelDao;
 
     public void add(Travel travel) throws Exception {
-        int result = 0; //受影响的行数默认为0
+        int result; //受影响的行数默认为0
         try {
             result = travelDao.add(travel);
         } catch (Exception e) {
@@ -43,7 +43,7 @@ public class TravelServiceImpl implements TravelService {
     }
 
     public void addLike(Integer userId, Integer travelId) throws Exception {
-        int result = 0;
+        int result;
         try {
             result = travelDao.addLike(userId, travelId);
         } catch (Exception e) {
@@ -55,9 +55,10 @@ public class TravelServiceImpl implements TravelService {
     }
 
     public int ifLike(Integer userId2, Integer travelId1) throws Exception {
-        int result = 0;
+        int result;
         try {
             result = travelDao.ifLike(userId2, travelId1);
+
         } catch (Exception e) {
             System.out.println("匹配like表失败");
             throw new OtherThingsException(e);
@@ -69,7 +70,7 @@ public class TravelServiceImpl implements TravelService {
     }
 
     public void addMessage(Integer userId1, Integer userId2, String message, Date now) throws Exception {
-        int result = 0; //受影响的行数默认为0
+        int result;
         try {
             result = travelDao.addMessage(userId1, userId2, message, now);
         } catch (Exception e) {
@@ -78,5 +79,17 @@ public class TravelServiceImpl implements TravelService {
         }
         if (result > 0)
             System.out.println("添加message成功");
+    }
+
+    public void updateLike(Integer travelId2) throws Exception {
+        int result = 0; //受影响的行数默认为0
+        try {
+            result = travelDao.updateLike(travelId2);
+        } catch (Exception e) {
+            System.out.println("更新点赞数失败");
+
+        }
+        if (result > 0)
+            System.out.println("更新点赞数成功");
     }
 }
