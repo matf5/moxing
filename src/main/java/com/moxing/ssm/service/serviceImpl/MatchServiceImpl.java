@@ -4,7 +4,7 @@ import com.moxing.ssm.dao.MatchDao;
 import com.moxing.ssm.dao.TravelDao;
 import com.moxing.ssm.exception.OtherThingsException;
 import com.moxing.ssm.model.Message;
-import com.moxing.ssm.model.UserInfo;
+import com.moxing.ssm.model.Travel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,14 +33,14 @@ public class MatchServiceImpl {
     }
 
 
-    public List<UserInfo> getMatchUserInfo1(Integer userId) throws Exception {
+    public List<Travel> getMatchUserInfo1(Integer travelId) throws Exception {
 
-        return matchDao.getMatchUserInfo1(userId);
+        return matchDao.getMatchUserInfo1(travelId);
     }
 
-    public List<UserInfo> getMatchUserInfo2(Integer userId) throws Exception {
+    public List<Travel> getMatchUserInfo2(Integer travelId) throws Exception {
 
-        return matchDao.getMatchUserInfo2(userId);
+        return matchDao.getMatchUserInfo2(travelId);
     }
 
     public List<Message> getMessage(Integer userId, Integer anotherUserId) throws Exception {
