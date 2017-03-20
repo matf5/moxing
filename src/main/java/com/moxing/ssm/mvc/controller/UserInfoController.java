@@ -3,11 +3,8 @@ package com.moxing.ssm.mvc.controller;
 
 import com.google.gson.Gson;
 import com.moxing.ssm.model.CosJsonBean;
-
 import com.moxing.ssm.model.Label;
-
 import com.moxing.ssm.model.ResponseObj;
-import com.moxing.ssm.model.User;
 import com.moxing.ssm.model.UserInfo;
 import com.moxing.ssm.service.serviceImpl.UserInfoServiceImpl;
 import com.moxing.ssm.utils.GsonUtils;
@@ -180,7 +177,7 @@ public class UserInfoController {
         }
 
         responseObj.setCode(ResponseObj.OK);
-        responseObj.setMsg("上传成功");
+        responseObj.setMsg("上传标签成功");
         return new GsonUtils().toJson(responseObj);
     }
 }

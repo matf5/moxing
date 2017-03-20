@@ -46,7 +46,6 @@ public class UserController {
     @ResponseBody
     public String reg(HttpServletRequest request, HttpServletResponse response, User user) throws Exception {
 
-
         responseObj = new ResponseObj<User>();
         if (user == null) {
             responseObj.setCode(ResponseObj.EMPTY);
@@ -99,6 +98,7 @@ public class UserController {
     @ResponseBody
 
     public String login(HttpServletRequest request, HttpServletResponse response, User user) throws Exception {
+
         if (user == null) {
             responseObj = new ResponseObj<User>();
             responseObj.setCode(ResponseObj.EMPTY);

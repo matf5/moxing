@@ -14,6 +14,14 @@
         m.first_user_id = #{userId}
     </select>
 
+    <insert id="addMatch">
+        INSERT INTO
+        `match`
+        (`first_travel_id`,`second_travel_id`)
+        VALUES
+        (#{0},#{1})
+    </insert>
+
     <select id="getMatchUserInfo2" resultType="com.moxing.ssm.model.UserInfo">
         SELECT
         *

@@ -1,6 +1,7 @@
 package com.moxing.ssm.service.serviceImpl;
 
 import com.moxing.ssm.dao.MatchDao;
+import com.moxing.ssm.dao.TravelDao;
 import com.moxing.ssm.exception.OtherThingsException;
 import com.moxing.ssm.model.Message;
 import com.moxing.ssm.model.UserInfo;
@@ -16,11 +17,13 @@ import java.util.List;
 public class MatchServiceImpl {
     @Autowired
     private MatchDao matchDao;
+    @Autowired
+    private TravelDao travelDao;
 
-    public void addMatch(Integer userId1, Integer userId2) throws Exception {
+    public void addMatch(Integer travelId1, Integer travelId2) throws Exception {
         int result;
         try {
-            result = matchDao.addMatch(userId1, userId2);
+            result = matchDao.addMatch(travelId1, travelId2);
         } catch (Exception e) {
             System.out.println("添加match表失败");
             throw new OtherThingsException(e);
@@ -44,4 +47,6 @@ public class MatchServiceImpl {
 
         return matchDao.getMessage(userId, anotherUserId);
     }
+
+
 }

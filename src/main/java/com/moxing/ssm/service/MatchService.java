@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface MatchService {
 
-    void addMatch(Integer userId1, Integer userId2) throws Exception;
+    void addMatch(Integer travelId1, Integer travelId2) throws Exception;
 
     List<UserInfo> getMatchUserInfo1(Integer userId) throws Exception;
 

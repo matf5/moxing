@@ -13,11 +13,7 @@ public class UserInfo {
 
     private String posCity;
 
-    private String longitude;
-
     private Boolean sex;
-
-    private String latitude;
 
     private Date cdate;
 
@@ -67,28 +63,12 @@ public class UserInfo {
         this.posCity = posCity == null ? null : posCity.trim();
     }
 
-    public String getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(String longitude) {
-        this.longitude = longitude == null ? null : longitude.trim();
-    }
-
     public Boolean getSex() {
         return sex;
     }
 
     public void setSex(Boolean sex) {
         this.sex = sex;
-    }
-
-    public String getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(String latitude) {
-        this.latitude = latitude == null ? null : latitude.trim();
     }
 
     public Date getCdate() {
