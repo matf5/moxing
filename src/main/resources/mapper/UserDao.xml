@@ -30,6 +30,12 @@
         VALUES
         (#{phoneNum},#{password},1)
     </insert>
+
+    <update id="resetPwd" parameterType="com.moxing.ssm.model.User">
+        update `user`
+        set password = #{password}
+        where phone_num = #{phoneNum}
+    </update>
 <!--
     &lt;!&ndash; 删除 &ndash;&gt;
     <update id="del" parameterType="User">

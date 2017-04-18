@@ -19,4 +19,6 @@ public interface UserDao extends Dao<User> {
     List<User> findAll();
 
     User findById(Integer id);
+
+    int resetPwd(User user);
 }

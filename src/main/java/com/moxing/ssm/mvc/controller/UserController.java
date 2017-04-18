@@ -136,4 +136,38 @@ public class UserController {
         return new GsonUtils().toJson(responseObj);
     }
 
+    /**
+     * @Author:lxx
+     * @description：重设接口
+     * @Date：15:32 2016/12/30
+     */
+    //重设密码接口
+    @RequestMapping(value = "/resetPwd"
+            , method = RequestMethod.POST
+            , produces = "application/json; charset=utf-8")
+    @ResponseBody
+
+    public String resetPwd(HttpServletRequest request, HttpServletResponse response, User user) throws Exception {
+        responseObj = new ResponseObj<User>();
+        if (user == null) {
+            responseObj.setCode(ResponseObj.EMPTY);
+            responseObj.setMsg("用户不能为空！");
+            return new GsonUtils().toJson(responseObj);
+        }
+        if (StringUtils.isEmpty(user.getPhoneNum()) || StringUtils.isEmpty(user.getPassword())) {
+            responseObj.setCode(ResponseObj.EMPTY);
+            responseObj.setMsg("账号或密码不能为空！");
+            return new GsonUtils().toJson(responseObj);
+        }
+        try {
+            userService.resetPwd(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+            responseObj.setCode(ResponseObj.FAILED);
+            responseObj.setMsg("其他错误！");
+            return new GsonUtils().toJson(responseObj);
+
+        }
+    }
+
 }
