@@ -1,7 +1,7 @@
 package com.moxing.ssm.dao;
 
 import com.moxing.ssm.model.Message;
-import com.moxing.ssm.model.UserInfo;
+import com.moxing.ssm.model.Travel;
 
 import java.util.List;
 
@@ -10,11 +10,11 @@ import java.util.List;
  */
 public interface MatchDao {
 
-    int addMatch(Integer userId1, Integer userId2);
+    int addMatch(Integer travelId1, Integer travelId2);
 
-    List<UserInfo> getMatchUserInfo1(Integer userId);
+    List<Travel> getMatchUserInfo1(Integer travelId);
 
-    List<UserInfo> getMatchUserInfo2(Integer userId);
+    List<Travel> getMatchUserInfo2(Integer travelId);
 
     List<Message> getMessage(Integer userId, Integer anotherUserId);
 

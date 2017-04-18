@@ -1,9 +1,10 @@
 package com.moxing.ssm.service.serviceImpl;
 
 import com.moxing.ssm.dao.MatchDao;
+import com.moxing.ssm.dao.TravelDao;
 import com.moxing.ssm.exception.OtherThingsException;
 import com.moxing.ssm.model.Message;
-import com.moxing.ssm.model.UserInfo;
+import com.moxing.ssm.model.Travel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +17,13 @@ import java.util.List;
 public class MatchServiceImpl {
     @Autowired
     private MatchDao matchDao;
+    @Autowired
+    private TravelDao travelDao;
 
-    public void addMatch(Integer userId1, Integer userId2) throws Exception {
+    public void addMatch(Integer travelId1, Integer travelId2) throws Exception {
         int result;
         try {
-            result = matchDao.addMatch(userId1, userId2);
+            result = matchDao.addMatch(travelId1, travelId2);
         } catch (Exception e) {
             System.out.println("添加match表失败");
             throw new OtherThingsException(e);
@@ -30,18 +33,20 @@ public class MatchServiceImpl {
     }
 
 
-    public List<UserInfo> getMatchUserInfo1(Integer userId) throws Exception {
+    public List<Travel> getMatchUserInfo1(Integer travelId) throws Exception {
 
-        return matchDao.getMatchUserInfo1(userId);
+        return matchDao.getMatchUserInfo1(travelId);
     }
 
-    public List<UserInfo> getMatchUserInfo2(Integer userId) throws Exception {
+    public List<Travel> getMatchUserInfo2(Integer travelId) throws Exception {
 
-        return matchDao.getMatchUserInfo2(userId);
+        return matchDao.getMatchUserInfo2(travelId);
     }
 
     public List<Message> getMessage(Integer userId, Integer anotherUserId) throws Exception {
 
         return matchDao.getMessage(userId, anotherUserId);
     }
+
+
 }

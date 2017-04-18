@@ -238,13 +238,16 @@ public class TravelController {
         } else {
             //匹配成功
             //添加1条message记录
-            //添加用户1和2进match表
+            travelService.addMessage(userId1, userId2, message, new Date());
             //Date now = new Date();
             //SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             //String time_str = sdf.format(now);
-            travelService.addMessage(userId1, userId2, message, new Date());
-            matchService.addMatch(userId1, userId2);
-            //travelService.addMessage(userId2, userId1, message, new Date());
+            //**重点**添加用户1的行程和2的行程进match表
+            //matchService.addMatch(userId1, userId2);
+            matchService.addMatch(travelId1, travelId2);
+            //修改travel表里的friendId
+            travelService.updateFriendId(travelId1, userId2);
+            travelService.updateFriendId(travelId2, userId1);
             responseObj.setCode(ResponseObj.OK);
             responseObj.setMsg("匹配成功！");
             return new GsonUtils().toJson(responseObj);

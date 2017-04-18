@@ -4,24 +4,111 @@
 <!-- namespace指定我们的到具体的bean -->
 <mapper namespace="com.moxing.ssm.dao.MatchDao">
 
-    <select id="getMatchUserInfo1" resultType="com.moxing.ssm.model.UserInfo">
+    <resultMap id="BaseResultMap" type="com.moxing.ssm.model.Travel" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="user_id" property="userId" jdbcType="INTEGER" />
+        <result column="friend_id" property="friendId" jdbcType="INTEGER" />
+        <result column="title" property="title" jdbcType="VARCHAR" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+        <result column="begin_date" property="beginDate" jdbcType="TIMESTAMP" />
+        <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+        <result column="begin_pos_prov" property="beginPosProv" jdbcType="VARCHAR" />
+        <result column="begin_pos_city" property="beginPosCity" jdbcType="VARCHAR" />
+        <result column="dest_pos_prov" property="destPosProv" jdbcType="VARCHAR" />
+        <result column="dest_pos_city" property="destPosCity" jdbcType="VARCHAR" />
+        <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
+        <result column="state" property="state" jdbcType="INTEGER" />
+        <result column="longitude" property="longitude" jdbcType="VARCHAR" />
+        <result column="latitude" property="latitude" jdbcType="VARCHAR" />
+        <result column="cDate" property="cdate" jdbcType="TIMESTAMP" />
+        <result column="is_expired" property="isExpired" jdbcType="BIT" />
+        <result column="like_num" property="likeNum" jdbcType="INTEGER" />
+        <result column="flag" property="flag" jdbcType="BIT" />
+        <association property="userInfo" resultMap="userResult" />
+        <association property="label" resultMap="labelResult" />
+    </resultMap>
+
+    <resultMap id="userResult" type="UserInfo">
+        <id property="id" column="id" />
+        <result property="phoneNum" column="phone_num" />
+        <result property="nickname" column="nickname" />
+        <result property="headimgUrl" column="headimg_url" />
+        <result property="posCity" column="pos_city" />
+        <result property="posProv" column="pos_prov" />
+        <result property="sex" column="sex" />
+        <result property="userId" column="user_id" />
+        <result property="cdate" column="cDate" />
+        <result property="mdate" column="mDate" />
+    </resultMap>
+
+    <resultMap id="labelResult" type="Label">
+        <id property="id" column="id" />
+        <result property="userId" column="user_id" />
+        <result property="extraversionScore" column="extraversion_score" />
+        <result property="agreeablenessScore" column="agreeableness_score" />
+        <result property="conscientiousnessScore" column="conscientiousness_score" />
+        <result property="warmth" column="warmth" />
+        <result property="gregariousness" column="gregariousness" />
+        <result property="assertiveness" column="assertiveness" />
+        <result property="excitementSeeking" column="excitement_seeking" />
+        <result property="activity" column="activity" />
+        <result property="positiveEmotions" column="positive_emotions" />
+        <result property="trust" column="trust" />
+        <result property="straightforwardness" column="straightforwardness" />
+        <result property="altruism" column="altruism" />
+        <result property="compliance" column="compliance" />
+        <result property="modesty" column="modesty" />
+        <result property="tenderMindedness" column="tender-mindedness" />
+        <result property="competence" column="competence" />
+        <result property="order" column="order0" />
+        <result property="dutifulness" column="dutifulness" />
+        <result property="achievementStriving" column="achievement_striving" />
+        <result property="selfDiscipline" column="mDate" />
+        <result property="deliberation" column="deliberation" />
+
+    </resultMap>
+    <select id="getMatchUserInfo1" resultMap="BaseResultMap">
         SELECT
-        *
+        M.*,u.*,l.extraversion_score,l.agreeableness_score, l.conscientiousness_score
         FROM
-        `userinfo`
-        RIGHT OUTER JOIN `match` AS m ON (userinfo.user_id = m.second_user_id)
-        WHERE
-        m.first_user_id = #{userId}
+        (
+            select
+            t.*,m.first_travel_id,m.second_travel_id
+            FROM
+            `travel` AS t
+            LEFT OUTER JOIN (`match` AS m) ON m.second_travel_id = t.id
+            WHERE
+            m.first_travel_id = #{travelId}
+        ) AS M
+        LEFT OUTER JOIN (`userinfo` AS u, `label` AS l)
+        ON
+        M.user_id = u.user_id and M.user_id = l.user_id
     </select>
 
-    <select id="getMatchUserInfo2" resultType="com.moxing.ssm.model.UserInfo">
+    <insert id="addMatch">
+        INSERT INTO
+        `match`
+        (`first_travel_id`,`second_travel_id`)
+        VALUES
+        (#{0},#{1})
+    </insert>
+
+    <select id="getMatchUserInfo2" resultMap="BaseResultMap">
         SELECT
-        *
+        M.*,u.*,l.extraversion_score,l.agreeableness_score, l.conscientiousness_score
         FROM
-        `userinfo`
-        RIGHT OUTER JOIN `match` AS m ON (userinfo.user_id = m.first_user_id)
-        WHERE
-        m.second_user_id = #{userId}
+        (
+            select
+            t.*
+            FROM
+            `travel` AS t
+            LEFT OUTER JOIN (`match` AS m) ON m.first_travel_id = t.id
+            WHERE
+            m.second_travel_id = #{travelId}
+        ) AS M
+        LEFT OUTER JOIN (`userinfo` AS u, `label` AS l)
+        ON
+        M.user_id = u.user_id and M.user_id = l.user_id
     </select>
 
     <select id="getMessage" resultType="com.moxing.ssm.model.Message">

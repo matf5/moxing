@@ -92,4 +92,17 @@ public class TravelServiceImpl implements TravelService {
         if (result > 0)
             System.out.println("更新点赞数成功");
     }
+
+
+    public void updateFriendId(Integer travelId1, Integer userId2) throws Exception {
+        int result;
+        try {
+            result = travelDao.updateFriendId(travelId1, userId2);
+        } catch (Exception e) {
+            System.out.println("修改friendId失败");
+            throw new OtherThingsException(e);
+        }
+        if (result > 0)
+            System.out.println("修改friendId成功");
+    }
 }

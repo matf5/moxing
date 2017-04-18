@@ -1,7 +1,7 @@
 package com.moxing.ssm.service;
 
 import com.moxing.ssm.model.Message;
-import com.moxing.ssm.model.UserInfo;
+import com.moxing.ssm.model.Travel;
 
 import java.util.List;
 
@@ -10,11 +10,11 @@ import java.util.List;
  */
 public interface MatchService {
 
-    void addMatch(Integer userId1, Integer userId2) throws Exception;
+    void addMatch(Integer travelId1, Integer travelId2) throws Exception;
 
-    List<UserInfo> getMatchUserInfo1(Integer userId) throws Exception;
+    List<Travel> getMatchUserInfo1(Integer travelId) throws Exception;
 
-    List<UserInfo> getMatchUserInfo2(Integer userId) throws Exception;
+    List<Travel> getMatchUserInfo2(Integer travelId) throws Exception;
 
     List<Message> getMessage(Integer userId, Integer anotherUserId) throws Exception;
 }

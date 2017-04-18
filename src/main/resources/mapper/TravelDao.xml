@@ -34,8 +34,6 @@
         <result property="headimgUrl" column="headimg_url" />
         <result property="posCity" column="pos_city" />
         <result property="posProv" column="pos_prov" />
-        <result property="longitude" column="longitude" />
-        <result property="latitude" column="latitude" />
         <result property="sex" column="sex" />
         <result property="userId" column="user_id" />
         <result property="cdate" column="cDate" />
@@ -211,11 +209,10 @@
 
     <select id="getTraListOfSamePos" resultMap="BaseResultMap">
         SELECT
-        travel.*,
-        userinfo.phone_num,userinfo.nickname,userinfo.headimg_url,userinfo.pos_city,userinfo.pos_prov,
-        userinfo.sex,userinfo.longitude,userinfo.latitude,userinfo.cDate,userinfo.mDate,
-        label.extraversion_score,label.agreeableness_score, label.conscientiousness_score,
-        if(travel.id=l.travel_id,1,0) as flag
+        travel.*,userinfo.phone_num,userinfo.nickname,userinfo.headimg_url,userinfo.pos_city,userinfo.pos_prov,userinfo.sex,
+		label.extraversion_score,label.agreeableness_score, label.conscientiousness_score,
+		if(travel.id=l.travel_id,1,0) as flag
+
         FROM
         `travel`
         LEFT OUTER JOIN (userinfo,label,`like` as l)
@@ -260,17 +257,15 @@
         (#{0},#{1},#{2},#{3})
     </insert>
 
-    <insert id="addMatch">
-        INSERT INTO
-        `match`
-        (`first_user_id`,`second_user_id`)
-        VALUES
-        (#{0},#{1})
-    </insert>
-
     <update id="updateLike" parameterType="Integer" >
         update travel
         set like_num = like_num + 1
+        where id = #{0}
+    </update>
+
+    <update id="updateFriendId" parameterType="Integer" >
+        update travel
+        set friend_id = #{1}
         where id = #{0}
     </update>
 </mapper>
