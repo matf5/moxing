@@ -102,4 +102,39 @@ public class matchController {
         }
     }
 
+    //查询我的全部相关消息
+    //post : userId
+    // 从message中查找两人之间的所有消息
+    //返回相关消息和时间的集合
+    @RequestMapping(value = "/getMyMessage"
+            , method = RequestMethod.POST
+            , produces = "application/json; charset=utf-8")
+    @ResponseBody
+    public String getMyMessage(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        responseObj = new ResponseObj<Message>();
+        Integer userId = Integer.parseInt(request.getParameter("userId"));
+        if (userId == null) {
+            responseObj.setCode(ResponseObj.EMPTY);
+            responseObj.setMsg("用户id不能为空！");
+            return new GsonUtils().toJson(responseObj);
+        }else {
+
+            try {
+
+                List<Message> list = new ArrayList<Message>();
+                list = matchService.getMyMessage(userId);
+                responseObj.setCode(ResponseObj.OK);
+                responseObj.setMsg("成功返回与自己有关的所有联系人信息！");
+                responseObj.setData(list);
+                return new GsonUtils().toJson(responseObj);
+            } catch (Exception e) {
+                e.printStackTrace();
+                responseObj.setCode(ResponseObj.FAILED);
+                responseObj.setMsg("错误：返回不了与自己有关的所有联系人信息！");
+                return new GsonUtils().toJson(responseObj);
+            }
+        }
+    }
+
 }

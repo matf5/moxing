@@ -18,4 +18,6 @@ public interface MatchDao {
 
     List<Message> getMessage(Integer userId, Integer anotherUserId);
 
+    List<Message> getMyMessage(Integer userId);
+
 }

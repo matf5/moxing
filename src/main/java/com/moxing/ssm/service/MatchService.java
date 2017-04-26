@@ -17,4 +17,6 @@ public interface MatchService {
     List<Travel> getMatchUserInfo2(Integer travelId) throws Exception;
 
     List<Message> getMessage(Integer userId, Integer anotherUserId) throws Exception;
+
+    List<Message> getMyMessage(Integer userId) throws Exception;
 }

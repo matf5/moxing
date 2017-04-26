@@ -142,6 +142,7 @@ public class UserController {
      * @Date：15:32 2016/12/30
      */
     //重设密码接口
+    /*
     @RequestMapping(value = "/resetPwd"
             , method = RequestMethod.POST
             , produces = "application/json; charset=utf-8")
@@ -169,5 +170,6 @@ public class UserController {
 
         }
     }
+    */
 
 }

@@ -17,6 +17,8 @@ public class Message {
 
     private Date cdate;
 
+    private boolean state;
+
     public int getId() {
         return id;
     }
@@ -55,5 +57,13 @@ public class Message {
 
     public void setCdate(Date cdate) {
         this.cdate = cdate;
+    }
+
+    public boolean isState() {
+        return state;
+    }
+
+    public void setState(boolean state) {
+        this.state = state;
     }
 }

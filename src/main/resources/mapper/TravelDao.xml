@@ -215,7 +215,7 @@
 		if(travel.id=l.travel_id,1,0) as flag
         FROM
         `travel`
-        LEFT OUTER JOIN (userinfo,label,`like` as l)
+        LEFT OUTER JOIN (userinfo,label,`mx_like` as l)
         ON (travel.user_id = userinfo.user_id AND travel.user_id = label.user_id AND
         l.user_id = #{0} AND travel.id = l.travel_id)
         WHERE
@@ -234,7 +234,7 @@
 
     <insert id="addLike" parameterType="Integer">
         INSERT INTO
-        `like`
+        `mx_like`
         (`user_id`,`travel_id`)
         VALUES
         (#{0},#{1})
@@ -244,7 +244,7 @@
         SELECT
         IFNULL(MAX(id),0)
         FROM
-        `like`
+        `mx_like`
         WHERE
         user_id = #{0} AND travel_id = #{1}
     </select>

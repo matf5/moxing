@@ -49,4 +49,9 @@ public class MatchServiceImpl {
     }
 
 
+    public List<Message> getMyMessage(Integer userId) throws Exception {
+
+        return matchDao.getMyMessage(userId);
+
+    }
 }
