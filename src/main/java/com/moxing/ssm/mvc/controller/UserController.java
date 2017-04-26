@@ -123,9 +123,8 @@ public class UserController {
                 responseObj = new ResponseObj<User>();
                 responseObj.setCode(ResponseObj.OK);
                 responseObj.setMsg(ResponseObj.OK_STR);
-                Map<String, Object> resultMap = new HashMap<String, Object>();
-                resultMap.put("userId", user1.getId());
-                responseObj.setData(resultMap);
+                String data = Integer.toString(user1.getId());
+                responseObj.setData(data);
 
             } else {
                 responseObj = new ResponseObj<User>();

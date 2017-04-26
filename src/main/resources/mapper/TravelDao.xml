@@ -209,10 +209,10 @@
 
     <select id="getTraListOfSamePos" resultMap="BaseResultMap">
         SELECT
-        travel.*,
-		userinfo.phone_num,userinfo.nickname,userinfo.headimg_url,userinfo.pos_city,userinfo.pos_prov,userinfo.sex,
+        travel.*,userinfo.phone_num,userinfo.nickname,userinfo.headimg_url,userinfo.pos_city,userinfo.pos_prov,userinfo.sex,
 		label.extraversion_score,label.agreeableness_score, label.conscientiousness_score,
 		if(travel.id=l.travel_id,1,0) as flag
+
         FROM
         `travel`
         LEFT OUTER JOIN (userinfo,label,`mx_like` as l)

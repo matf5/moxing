@@ -41,6 +41,15 @@ public class Travel {
 
     private Boolean isExpired;
 
+
+    public Boolean getExpired() {
+        return isExpired;
+    }
+
+    public void setExpired(Boolean expired) {
+        isExpired = expired;
+    }
+
     private UserInfo userInfo;
 
     private Label label;
