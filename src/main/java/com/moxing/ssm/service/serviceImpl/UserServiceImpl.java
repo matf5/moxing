@@ -33,4 +33,17 @@ public class UserServiceImpl implements UserService {
     public User findById(Integer id) throws Exception {
         return userDao.findById(id);
     }
+
+    public void resetPwd(User user) throws Exception {
+        int result = 0; //受影响的行数默认为0
+        try {
+            result = userDao.resetPwd(user);
+        } catch (Exception e) {
+            System.out.println("重设密码失败");
+            //其他用户添加失败异常
+            //throw new OtherThingsException(e);
+        }
+        if (result > 0)
+            System.out.println("重设密码失败");
+    }
 }

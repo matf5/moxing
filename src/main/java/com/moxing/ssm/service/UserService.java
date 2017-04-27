@@ -9,4 +9,6 @@ public interface UserService {
     void add(User user) throws Exception;
     User findUser(User user) throws Exception;
     User findById(Integer id) throws Exception;
+
+    void resetPwd(User user) throws Exception;
 }

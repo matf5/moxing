@@ -76,7 +76,7 @@
             t.*,m.first_travel_id,m.second_travel_id
             FROM
             `travel` AS t
-            LEFT OUTER JOIN (`match` AS m) ON m.second_travel_id = t.id
+            LEFT OUTER JOIN (`mx_match` AS m) ON m.second_travel_id = t.id
             WHERE
             m.first_travel_id = #{travelId}
         ) AS M
@@ -87,7 +87,7 @@
 
     <insert id="addMatch">
         INSERT INTO
-        `match`
+        `mx_match`
         (`first_travel_id`,`second_travel_id`)
         VALUES
         (#{0},#{1})
@@ -102,7 +102,7 @@
             t.*
             FROM
             `travel` AS t
-            LEFT OUTER JOIN (`match` AS m) ON m.first_travel_id = t.id
+            LEFT OUTER JOIN (`mx_match` AS m) ON m.first_travel_id = t.id
             WHERE
             m.second_travel_id = #{travelId}
         ) AS M
@@ -118,6 +118,15 @@
         `message`
         WHERE
         (message.send_id = #{0} AND message.rece_id = #{1}) OR (message.send_id = #{1} AND message.rece_id = #{0})
+    </select>
+
+    <select id="getMyMessage" resultType="com.moxing.ssm.model.Message">
+        SELECT
+        *
+        FROM
+        `message`
+        WHERE
+        message.send_id = #{0} OR message.rece_id = #{0}
     </select>
 
 </mapper>
