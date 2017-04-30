@@ -23,6 +23,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/matchAction")
 public class matchController {
+
     ResponseObj responseObj = new ResponseObj();
     @Autowired
     private MatchServiceImpl matchService;

@@ -51,4 +51,9 @@ public class UserInfoServiceImpl {
         if (result > 0)
             System.out.println("更新标签成功");
     }
+
+    public UserInfo getUserInfo(Integer userId) throws Exception {
+
+        return userInfoDao.getUserInfo(userId);
+    }
 }

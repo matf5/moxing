@@ -98,6 +98,37 @@ public class UserInfoController {
         return new GsonUtils().toJson(responseObj);
     }
 
+    //获取个人信息
+    //post : userId
+    // 从userinfo里获取个人信息
+    //返回UserInfo
+    @RequestMapping(value = "/getUserInfo"
+            , method = RequestMethod.POST
+            , produces = "application/json; charset=utf-8")
+    @ResponseBody
+    public String getUserInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        responseObj = new ResponseObj<UserInfo>();
+        Integer userId = Integer.parseInt(request.getParameter("userId"));
+        if (userId == null) {
+            responseObj.setCode(ResponseObj.EMPTY);
+            responseObj.setMsg("用户id不能为空！");
+            return new GsonUtils().toJson(responseObj);
+        }
+        try {
+            UserInfo myUserInfo = new UserInfo();
+            myUserInfo = userInfoService.getUserInfo(userId);
+            responseObj.setCode(ResponseObj.OK);
+            responseObj.setMsg("获取个人信息成功");
+            responseObj.setData(myUserInfo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            responseObj.setCode(ResponseObj.FAILED);
+            responseObj.setMsg("其他错误！");
+            return new GsonUtils().toJson(responseObj);
+        }
+        return new GsonUtils().toJson(responseObj);
+    }
+
     @RequestMapping(value = "/updateLabel"
             , method = RequestMethod.POST
             , produces = "application/json; charset=utf-8")

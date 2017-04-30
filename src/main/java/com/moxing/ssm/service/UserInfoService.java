@@ -13,4 +13,6 @@ public interface UserInfoService {
     void updateUserInfo(UserInfo userInfo) throws Exception;
 
     void insertLabel(Label label) throws Exception;
+
+    UserInfo getUserInfo(Integer userId) throws Exception;
 }

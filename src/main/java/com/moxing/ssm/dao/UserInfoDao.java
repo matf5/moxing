@@ -15,4 +15,6 @@ public interface UserInfoDao {
 
     int updateByPrimaryKey(UserInfo record);
 
+    UserInfo getUserInfo(Integer userId);
+
 }

@@ -152,5 +152,12 @@
       pos_prov = #{posProv,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-
+  <select id="getUserInfo" resultType="com.moxing.ssm.model.UserInfo">
+    SELECT
+    *
+    FROM
+    `userinfo`
+    WHERE
+    userinfo.user_id = #{0}
+  </select>
 </mapper>
