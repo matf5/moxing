@@ -137,5 +137,24 @@ public class matchController {
             }
         }
     }
+    //发送消息
+    @RequestMapping(value = "/addMessage"
+            , method = RequestMethod.POST
+            , produces = "application/json; charset=utf-8")
+    @ResponseBody
+    public String addMessage(HttpServletRequest request, HttpServletResponse response,Message message) throws Exception {
+        responseObj = new ResponseObj<Message>();
+        try {
+            matchService.addMessage(message);
+        } catch (Exception e) {
+            e.printStackTrace();
+            responseObj.setCode(ResponseObj.FAILED);
+            responseObj.setMsg("其他错误！");
+            return new GsonUtils().toJson(responseObj);
 
+        }
+        responseObj.setCode(ResponseObj.OK);
+        responseObj.setMsg("发送成功");
+        return new GsonUtils().toJson(responseObj);
+    }
 }

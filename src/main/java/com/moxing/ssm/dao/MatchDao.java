@@ -20,4 +20,6 @@ public interface MatchDao {
 
     List<Message> getMyMessage(Integer userId);
 
+    int addMessage(Message message);
+
 }

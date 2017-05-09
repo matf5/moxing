@@ -19,4 +19,6 @@ public interface MatchService {
     List<Message> getMessage(Integer userId, Integer anotherUserId) throws Exception;
 
     List<Message> getMyMessage(Integer userId) throws Exception;
+
+    void addMessage(Message message) throws Exception;
 }

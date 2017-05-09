@@ -128,5 +128,11 @@
         WHERE
         message.send_id = #{0} OR message.rece_id = #{0}
     </select>
-
+    <insert id="addMessage" parameterType="com.moxing.ssm.model.Message" >
+        insert into message (
+        send_id,rece_id,content
+        )
+        values (#{sendId,jdbcType=INTEGER},#{receId,jdbcType=INTEGER},#{content,jdbcType=VARCHAR}
+        )
+    </insert>
 </mapper>

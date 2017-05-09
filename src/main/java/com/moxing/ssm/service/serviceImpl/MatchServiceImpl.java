@@ -54,4 +54,16 @@ public class MatchServiceImpl {
         return matchDao.getMyMessage(userId);
 
     }
+    public void addMessage(Message message) throws  Exception{
+        int result = 0; //受影响的行数默认为0
+        try {
+            result = matchDao.addMessage(message);
+        } catch (Exception e) {
+            System.out.println("发送消息成功");
+            //其他用户添加失败异常
+            throw new OtherThingsException(e);
+        }
+        if (result > 0)
+            System.out.println("发送消息失败");
+    }
 }
