@@ -141,7 +141,7 @@ public class TravelController {
             return new GsonUtils().toJson(responseObj);
         } else {
             try {
-                responseObj.setData(travelService.findByUserId(userId).getId());
+                responseObj.setData(travelService.findByUserId(userId));
             } catch (Exception e) {
                 e.printStackTrace();
                 responseObj.setCode(ResponseObj.FAILED);
@@ -154,6 +154,7 @@ public class TravelController {
             return new GsonUtils().toJson(responseObj);
         }
     }
+
 
     //根据用户发布的行程返回对应匹配相同目的地的行程
     //请求数据：userId
