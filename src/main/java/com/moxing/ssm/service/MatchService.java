@@ -20,5 +20,10 @@ public interface MatchService {
 
     List<Message> getMyMessage(Integer userId) throws Exception;
 
+    List<Message> getNewMessage(Integer userId) throws Exception;
+
     void addMessage(Message message) throws Exception;
+
+    int updateMmessage(Integer userId, Integer anotherUserId) throws Exception;
+
 }

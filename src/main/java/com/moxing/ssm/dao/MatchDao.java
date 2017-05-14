@@ -22,4 +22,8 @@ public interface MatchDao {
 
     int addMessage(Message message);
 
+    int updateMessage(Integer userId, Integer anotherUserId);
+
+    List<Message> getNewMessage(Integer userId);
+
 }

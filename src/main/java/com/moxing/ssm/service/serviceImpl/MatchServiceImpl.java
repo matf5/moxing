@@ -47,6 +47,9 @@ public class MatchServiceImpl {
 
         return matchDao.getMessage(userId, anotherUserId);
     }
+    public List<Message> getNewMessage(Integer userId) throws  Exception{
+        return matchDao.getNewMessage(userId);
+    }
 
 
     public List<Message> getMyMessage(Integer userId) throws Exception {
@@ -59,11 +62,26 @@ public class MatchServiceImpl {
         try {
             result = matchDao.addMessage(message);
         } catch (Exception e) {
-            System.out.println("发送消息成功");
+            System.out.println("发送消息失败");
             //其他用户添加失败异常
             throw new OtherThingsException(e);
         }
         if (result > 0)
-            System.out.println("发送消息失败");
+            System.out.println("发送消息成功");
     }
+
+    public int updateMmessage(Integer userId, Integer anotherUserId) throws  Exception{
+        int result = 0;
+        try{
+            result = matchDao.updateMessage(userId, anotherUserId);
+        }catch (Exception e){
+            System.out.println("查看消息失败");
+            //其他用户添加失败异常
+            throw new OtherThingsException(e);
+        }
+        if (result > 0)
+            System.out.println("查看消息成功");
+        return result;
+    }
+
 }

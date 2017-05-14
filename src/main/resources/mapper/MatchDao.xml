@@ -119,7 +119,14 @@
         WHERE
         (message.send_id = #{0} AND message.rece_id = #{1}) OR (message.send_id = #{1} AND message.rece_id = #{0})
     </select>
-
+    <select id="getNewMessage" resultType="com.moxing.ssm.model.Message">
+        SELECT
+        *
+        FROM
+        `message`
+        WHERE
+        message.rece_id=#{userId} AND message.is_seen =0
+    </select>
     <select id="getMyMessage" resultType="com.moxing.ssm.model.Message">
         SELECT
         *
@@ -135,4 +142,9 @@
         values (#{sendId,jdbcType=INTEGER},#{receId,jdbcType=INTEGER},#{content,jdbcType=VARCHAR}
         )
     </insert>
+    <update id="updateMessage" parameterType="Integer" >
+        update message
+        set is_seen = 1
+        where (rece_id = #{0} AND send_id = #{1})
+    </update>
 </mapper>
