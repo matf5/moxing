@@ -137,9 +137,9 @@
     </select>
     <insert id="addMessage" parameterType="com.moxing.ssm.model.Message" >
         insert into message (
-        send_id,rece_id,content
+        send_id,rece_id,content,cDate,is_seen
         )
-        values (#{sendId,jdbcType=INTEGER},#{receId,jdbcType=INTEGER},#{content,jdbcType=VARCHAR}
+        values (#{sendId,jdbcType=INTEGER},#{receId,jdbcType=INTEGER},#{content,jdbcType=VARCHAR},#{cDate,jdbcType=TIMESTAMP},0
         )
     </insert>
     <update id="updateMessage" parameterType="Integer" >

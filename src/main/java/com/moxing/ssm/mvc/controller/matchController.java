@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -184,6 +185,8 @@ public class matchController {
     public String addMessage(HttpServletRequest request, HttpServletResponse response,Message message) throws Exception {
         responseObj = new ResponseObj<Message>();
         try {
+            Date date = new Date();
+            message.setCDate(date);
             matchService.addMessage(message);
         } catch (Exception e) {
             e.printStackTrace();
