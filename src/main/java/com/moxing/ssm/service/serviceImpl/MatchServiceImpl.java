@@ -22,15 +22,21 @@ public class MatchServiceImpl {
 
     public void addMatch(Integer travelId1, Integer travelId2) throws Exception {
         int result;
-        try {
-            result = matchDao.addMatch(travelId1, travelId2);
-        } catch (Exception e) {
-            System.out.println("添加match表失败");
-            throw new OtherThingsException(e);
+        int res = matchDao.selectMatch(travelId1,travelId2);
+        if(res>0)
+            System.out.println("添加match表失败，已存在");
+        else {
+            try {
+                result = matchDao.addMatch(travelId1, travelId2);
+            } catch (Exception e) {
+                System.out.println("添加match表失败");
+                throw new OtherThingsException(e);
+            }
+            if (result > 0)
+                System.out.println("添加match表成功");
         }
-        if (result > 0)
-            System.out.println("添加match表成功");
     }
+
 
 
     public List<Travel> getMatchUserInfo1(Integer travelId) throws Exception {
