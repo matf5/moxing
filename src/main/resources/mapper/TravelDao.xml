@@ -210,7 +210,12 @@
     <select id="getTraListOfSamePos" resultMap="BaseResultMap">
         SELECT
         travel.*,userinfo.phone_num,userinfo.nickname,userinfo.headimg_url,userinfo.pos_city,userinfo.pos_prov,userinfo.sex,
-		label.extraversion_score,label.agreeableness_score, label.conscientiousness_score,
+		label.warmth,label.gregariousness, label.assertiveness,
+        label.excitement_seeking, label.activity, label.positive_emotions,
+        label.trust, label.straightforwardness, label.altruism,
+        label.compliance, label.modesty, label.tender-mindedness,
+        label.competence, label.order0, label.dutifulness,
+        label.achievement_striving, label.self-discipline, label.deliberation,
 		if(travel.id=l.travel_id,1,0) as flag
 
         FROM
