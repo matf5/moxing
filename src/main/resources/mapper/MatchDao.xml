@@ -69,7 +69,12 @@
     </resultMap>
     <select id="getMatchUserInfo1" resultMap="BaseResultMap">
         SELECT
-        M.*,u.*,l.extraversion_score,l.agreeableness_score, l.conscientiousness_score
+        M.*,u.*,l.warmth,l.gregariousness, l.assertiveness,
+        l.excitement_seeking, l.activity, l.positive_emotions,
+        l.trust, l.straightforwardness, l.altruism,
+        l.compliance, l.modesty, l.tender-mindedness,
+        l.competence, l.order0, l.dutifulness,
+        l.achievement_striving, l.self-discipline, l.deliberation
         FROM
         (
             select
@@ -95,7 +100,12 @@
 
     <select id="getMatchUserInfo2" resultMap="BaseResultMap">
         SELECT
-        M.*,u.*,l.extraversion_score,l.agreeableness_score, l.conscientiousness_score
+        M.*,u.*,l.warmth,l.gregariousness, l.assertiveness,
+        l.excitement_seeking, l.activity, l.positive_emotions,
+        l.trust, l.straightforwardness, l.altruism,
+        l.compliance, l.modesty, l.tender-mindedness,
+        l.competence, l.order0, l.dutifulness,
+        l.achievement_striving, l.self-discipline, l.deliberation
         FROM
         (
             select

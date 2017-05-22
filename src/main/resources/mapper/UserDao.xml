@@ -36,24 +36,5 @@
         set password = #{password}
         where phone_num = #{phoneNum}
     </update>
-<!--
-    &lt;!&ndash; 删除 &ndash;&gt;
-    <update id="del" parameterType="User">
-        UPDATE
-        `user`
-        SET
-        `used`=FALSE
-        WHERE
-        `login_id`=#{loginId};
-    </update>
 
-    &lt;!&ndash; 更新用户信息 &ndash;&gt;
-    <update id="update" parameterType="User">
-        UPDATE
-        `user`
-        SET
-        `name`=#{name}, `age`=#{age}, `sex`=#{sex}, `duty`=#{duty}, `cell_number`=#{cellNumber}, `photo_url`=#{photoUrl}
-        WHERE
-        `login_id`=#{loginId};
-    </update>-->
 </mapper>
