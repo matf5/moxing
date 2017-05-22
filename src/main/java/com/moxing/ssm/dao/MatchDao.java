@@ -10,6 +10,8 @@ import java.util.List;
  */
 public interface MatchDao {
 
+    int selectMatch(Integer travelId1, Integer travelId2);
+
     int addMatch(Integer travelId1, Integer travelId2);
 
     List<Travel> getMatchUserInfo1(Integer travelId);

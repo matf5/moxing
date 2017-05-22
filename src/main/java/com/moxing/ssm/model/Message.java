@@ -15,7 +15,7 @@ public class Message {
 
     private String content;
 
-    private Date cdate;
+    private Date cDate;
 
     private boolean state;
 
@@ -51,12 +51,12 @@ public class Message {
         this.content = content;
     }
 
-    public Date getCdate() {
-        return cdate;
+    public Date getCDate() {
+        return cDate;
     }
 
-    public void setCdate(Date cdate) {
-        this.cdate = cdate;
+    public void setCDate(Date cDate) {
+        this.cDate = cDate;
     }
 
     public boolean isState() {

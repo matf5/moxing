@@ -28,6 +28,11 @@
         <association property="label" resultMap="labelResult" />
     </resultMap>
 
+    <resultMap id="matchResult" type="com.moxing.ssm.model.Match">
+        <id property="id" column="id" />
+        <result property="firstTravelId" column="first_travel_id" />
+        <result property="secondTravelId" column="second_travel_id" />
+    </resultMap>
     <resultMap id="userResult" type="UserInfo">
         <id property="id" column="id" />
         <result property="phoneNum" column="phone_num" />
@@ -97,6 +102,15 @@
         VALUES
         (#{0},#{1})
     </insert>
+    <select id="selectMatch" resultType="Integer" parameterType="Integer">
+        SELECT first_travel_id
+        FROM
+        `mx_match`
+        WHERE
+        (first_travel_id=#{0} ANd second_travel_id =#{1})
+        OR
+        (first_travel_id=#{1} ANd second_travel_id =#{0})
+    </select>
 
     <select id="getMatchUserInfo2" resultMap="BaseResultMap">
         SELECT
@@ -147,9 +161,9 @@
     </select>
     <insert id="addMessage" parameterType="com.moxing.ssm.model.Message" >
         insert into message (
-        send_id,rece_id,content
+        send_id,rece_id,content,cDate,is_seen
         )
-        values (#{sendId,jdbcType=INTEGER},#{receId,jdbcType=INTEGER},#{content,jdbcType=VARCHAR}
+        values (#{sendId,jdbcType=INTEGER},#{receId,jdbcType=INTEGER},#{content,jdbcType=VARCHAR},#{cDate,jdbcType=TIMESTAMP},0
         )
     </insert>
     <update id="updateMessage" parameterType="Integer" >

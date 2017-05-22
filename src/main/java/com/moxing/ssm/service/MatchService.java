@@ -12,6 +12,7 @@ public interface MatchService {
 
     void addMatch(Integer travelId1, Integer travelId2) throws Exception;
 
+    int selectMatch(Integer travelId1, Integer travelId2) throws Exception;
     List<Travel> getMatchUserInfo1(Integer travelId) throws Exception;
 
     List<Travel> getMatchUserInfo2(Integer travelId) throws Exception;
