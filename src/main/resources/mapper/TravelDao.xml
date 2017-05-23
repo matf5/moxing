@@ -57,12 +57,12 @@
         <result property="altruism" column="altruism" />
         <result property="compliance" column="compliance" />
         <result property="modesty" column="modesty" />
-        <result property="tenderMindedness" column="tender-mindedness" />
+        <result property="tenderMindedness" column="tenderMindedness" />
         <result property="competence" column="competence" />
         <result property="order" column="order0" />
         <result property="dutifulness" column="dutifulness" />
         <result property="achievementStriving" column="achievement_striving" />
-        <result property="selfDiscipline" column="mDate" />
+        <result property="selfDiscipline" column="selfDiscipline" />
         <result property="deliberation" column="deliberation" />
 
     </resultMap>
@@ -213,9 +213,9 @@
 		label.warmth,label.gregariousness, label.assertiveness,
         label.excitement_seeking, label.activity, label.positive_emotions,
         label.trust, label.straightforwardness, label.altruism,
-        label.compliance, label.modesty, label.tender-mindedness,
+        label.compliance, label.modesty, label.tenderMindedness,
         label.competence, label.order0, label.dutifulness,
-        label.achievement_striving, label.self-discipline, label.deliberation,
+        label.achievement_striving, label.selfDiscipline, label.deliberation,
 		if(travel.id=l.travel_id,1,0) as flag
 
         FROM

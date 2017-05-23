@@ -196,6 +196,7 @@ public class UserInfoController {
                 cScore += 1;
             }
             if (label.getDeliberation()==1) {
+
                 cScore += 1;
             }
             label.setConscientiousnessScore(cScore);

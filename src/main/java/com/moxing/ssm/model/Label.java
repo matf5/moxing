@@ -33,17 +33,20 @@ public class Label {
 
     private Integer modesty;
 
+
     private Integer tendermindedness;
 
     private Integer competence;
 
     private Integer order0;
 
+
     private Integer dutifulness;
 
     private Integer achievementStriving;
 
     private Integer selfdiscipline;
+
 
     private Integer deliberation;
 
@@ -103,6 +106,7 @@ public class Label {
         this.gregariousness = gregariousness;
     }
 
+
     public Integer getAssertiveness() {
         return assertiveness;
     }
@@ -117,6 +121,7 @@ public class Label {
 
     public void setExcitementSeeking(Integer excitementSeeking) {
         this.excitementSeeking = excitementSeeking;
+
     }
 
     public Integer getActivity() {
@@ -181,6 +186,7 @@ public class Label {
 
     public void setTendermindedness(Integer tendermindedness) {
         this.tendermindedness = tendermindedness;
+
     }
 
     public Integer getCompetence() {
@@ -191,12 +197,14 @@ public class Label {
         this.competence = competence;
     }
 
+
     public Integer getOrder0() {
         return order0;
     }
 
     public void setOrder0(Integer order0) {
         this.order0 = order0;
+
     }
 
     public Integer getDutifulness() {
@@ -215,12 +223,14 @@ public class Label {
         this.achievementStriving = achievementStriving;
     }
 
+
     public Integer getSelfdiscipline() {
         return selfdiscipline;
     }
 
     public void setSelfdiscipline(Integer selfdiscipline) {
         this.selfdiscipline = selfdiscipline;
+
     }
 
     public Integer getDeliberation() {
