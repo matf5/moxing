@@ -1,10 +1,6 @@
 package com.moxing.ssm.model;
 
-/**
- * Created by lxx on 2017/1/31.
- */
 public class Label {
-
     private Integer id;
 
     private Integer userId;
@@ -15,41 +11,41 @@ public class Label {
 
     private Integer conscientiousnessScore;
 
-    private Boolean warmth;
+    private Integer warmth;
 
-    private Boolean gregariousness;
+    private Integer gregariousness;
 
-    private Boolean assertiveness;
+    private Integer assertiveness;
 
-    private Boolean excitementSeeking;
+    private Integer excitementSeeking;
 
-    private Boolean activity;
+    private Integer activity;
 
-    private Boolean positiveEmotions;
+    private Integer positiveEmotions;
 
-    private Boolean trust;
+    private Integer trust;
 
-    private Boolean straightforwardness;
+    private Integer straightforwardness;
 
-    private Boolean altruism;
+    private Integer altruism;
 
-    private Boolean compliance;
+    private Integer compliance;
 
-    private Boolean modesty;
+    private Integer modesty;
 
-    private Boolean tenderMindedness;
+    private Integer tendermindedness;
 
-    private Boolean competence;
+    private Integer competence;
 
-    private Boolean order;
+    private Integer order0;
 
-    private Boolean dutifulness;
+    private Integer dutifulness;
 
-    private Boolean achievementStriving;
+    private Integer achievementStriving;
 
-    private Boolean selfDiscipline;
+    private Integer selfdiscipline;
 
-    private Boolean deliberation;
+    private Integer deliberation;
 
     public Integer getId() {
         return id;
@@ -91,147 +87,147 @@ public class Label {
         this.conscientiousnessScore = conscientiousnessScore;
     }
 
-    public Boolean getWarmth() {
+    public Integer getWarmth() {
         return warmth;
     }
 
-    public void setWarmth(Boolean warmth) {
+    public void setWarmth(Integer warmth) {
         this.warmth = warmth;
     }
 
-    public Boolean getGregariousness() {
+    public Integer getGregariousness() {
         return gregariousness;
     }
 
-    public void setGregariousness(Boolean gregariousness) {
+    public void setGregariousness(Integer gregariousness) {
         this.gregariousness = gregariousness;
     }
 
-    public Boolean getAssertiveness() {
+    public Integer getAssertiveness() {
         return assertiveness;
     }
 
-    public void setAssertiveness(Boolean assertiveness) {
+    public void setAssertiveness(Integer assertiveness) {
         this.assertiveness = assertiveness;
     }
 
-    public Boolean getActivity() {
-        return activity;
-    }
-
-    public void setActivity(Boolean activity) {
-        this.activity = activity;
-    }
-
-    public Boolean getExcitementSeeking() {
+    public Integer getExcitementSeeking() {
         return excitementSeeking;
     }
 
-    public void setExcitementSeeking(Boolean excitementSeeking) {
+    public void setExcitementSeeking(Integer excitementSeeking) {
         this.excitementSeeking = excitementSeeking;
     }
 
-    public Boolean getPositiveEmotions() {
+    public Integer getActivity() {
+        return activity;
+    }
+
+    public void setActivity(Integer activity) {
+        this.activity = activity;
+    }
+
+    public Integer getPositiveEmotions() {
         return positiveEmotions;
     }
 
-    public void setPositiveEmotions(Boolean positiveEmotions) {
+    public void setPositiveEmotions(Integer positiveEmotions) {
         this.positiveEmotions = positiveEmotions;
     }
 
-    public Boolean getTrust() {
+    public Integer getTrust() {
         return trust;
     }
 
-    public void setTrust(Boolean trust) {
+    public void setTrust(Integer trust) {
         this.trust = trust;
     }
 
-    public Boolean getStraightforwardness() {
+    public Integer getStraightforwardness() {
         return straightforwardness;
     }
 
-    public void setStraightforwardness(Boolean straightforwardness) {
+    public void setStraightforwardness(Integer straightforwardness) {
         this.straightforwardness = straightforwardness;
     }
 
-    public Boolean getAltruism() {
+    public Integer getAltruism() {
         return altruism;
     }
 
-    public void setAltruism(Boolean altruism) {
+    public void setAltruism(Integer altruism) {
         this.altruism = altruism;
     }
 
-    public Boolean getCompliance() {
+    public Integer getCompliance() {
         return compliance;
     }
 
-    public void setCompliance(Boolean compliance) {
+    public void setCompliance(Integer compliance) {
         this.compliance = compliance;
     }
 
-    public Boolean getTenderMindedness() {
-        return tenderMindedness;
-    }
-
-    public void setTenderMindedness(Boolean tenderMindedness) {
-        this.tenderMindedness = tenderMindedness;
-    }
-
-    public Boolean getModesty() {
+    public Integer getModesty() {
         return modesty;
     }
 
-    public void setModesty(Boolean modesty) {
+    public void setModesty(Integer modesty) {
         this.modesty = modesty;
     }
 
-    public Boolean getCompetence() {
+    public Integer getTendermindedness() {
+        return tendermindedness;
+    }
+
+    public void setTendermindedness(Integer tendermindedness) {
+        this.tendermindedness = tendermindedness;
+    }
+
+    public Integer getCompetence() {
         return competence;
     }
 
-    public void setCompetence(Boolean competence) {
+    public void setCompetence(Integer competence) {
         this.competence = competence;
     }
 
-    public Boolean getOrder() {
-        return order;
+    public Integer getOrder0() {
+        return order0;
     }
 
-    public void setOrder(Boolean order) {
-        this.order = order;
+    public void setOrder0(Integer order0) {
+        this.order0 = order0;
     }
 
-    public Boolean getDutifulness() {
+    public Integer getDutifulness() {
         return dutifulness;
     }
 
-    public void setDutifulness(Boolean dutifulness) {
+    public void setDutifulness(Integer dutifulness) {
         this.dutifulness = dutifulness;
     }
 
-    public Boolean getAchievementStriving() {
+    public Integer getAchievementStriving() {
         return achievementStriving;
     }
 
-    public void setAchievementStriving(Boolean achievementStriving) {
+    public void setAchievementStriving(Integer achievementStriving) {
         this.achievementStriving = achievementStriving;
     }
 
-    public Boolean getSelfDiscipline() {
-        return selfDiscipline;
+    public Integer getSelfdiscipline() {
+        return selfdiscipline;
     }
 
-    public void setSelfDiscipline(Boolean selfDiscipline) {
-        this.selfDiscipline = selfDiscipline;
+    public void setSelfdiscipline(Integer selfdiscipline) {
+        this.selfdiscipline = selfdiscipline;
     }
 
-    public Boolean getDeliberation() {
+    public Integer getDeliberation() {
         return deliberation;
     }
 
-    public void setDeliberation(Boolean deliberation) {
+    public void setDeliberation(Integer deliberation) {
         this.deliberation = deliberation;
     }
 }

@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
     <!--数据库驱动-->
-    <classPathEntry    location="C://Users/Administrator/.m2/repository/mysql/mysql-connector-java/5.1.37/mysql-connector-java-5.1.37.jar/"/>
+    <classPathEntry    location="/Users/matingfeng/Documents/mtf/moxing/moxing/target/moxing/WEB-INF/lib/mysql-connector-java-5.1.37.jar/"/>
     <context id="DB2Tables"    targetRuntime="MyBatis3">
         <commentGenerator>
             <property name="suppressDate" value="true"/>
@@ -30,7 +30,7 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!--生成对应表及类名-->
-        <table tableName="userInfo" domainObjectName="UserInfo" enableCountByExample="false"
+        <table tableName="label" domainObjectName="Label" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false"></table>
 

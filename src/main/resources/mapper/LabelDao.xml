@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.moxing.ssm.dao.LabelDao" >
+  <resultMap id="BaseResultMap" type="com.moxing.ssm.model.Label" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="extraversion_score" property="extraversionScore" jdbcType="INTEGER" />
+    <result column="agreeableness_score" property="agreeablenessScore" jdbcType="INTEGER" />
+    <result column="conscientiousness_score" property="conscientiousnessScore" jdbcType="INTEGER" />
+    <result column="warmth" property="warmth" jdbcType="INTEGER" />
+    <result column="gregariousness" property="gregariousness" jdbcType="INTEGER" />
+    <result column="assertiveness" property="assertiveness" jdbcType="INTEGER" />
+    <result column="excitement_seeking" property="excitementSeeking" jdbcType="INTEGER" />
+    <result column="activity" property="activity" jdbcType="INTEGER" />
+    <result column="positive_emotions" property="positiveEmotions" jdbcType="INTEGER" />
+    <result column="trust" property="trust" jdbcType="INTEGER" />
+    <result column="straightforwardness" property="straightforwardness" jdbcType="INTEGER" />
+    <result column="altruism" property="altruism" jdbcType="INTEGER" />
+    <result column="compliance" property="compliance" jdbcType="INTEGER" />
+    <result column="modesty" property="modesty" jdbcType="INTEGER" />
+    <result column="tenderMindedness" property="tendermindedness" jdbcType="INTEGER" />
+    <result column="competence" property="competence" jdbcType="INTEGER" />
+    <result column="order0" property="order0" jdbcType="INTEGER" />
+    <result column="dutifulness" property="dutifulness" jdbcType="INTEGER" />
+    <result column="achievement_striving" property="achievementStriving" jdbcType="INTEGER" />
+    <result column="selfDiscipline" property="selfdiscipline" jdbcType="INTEGER" />
+    <result column="deliberation" property="deliberation" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, extraversion_score, agreeableness_score, conscientiousness_score, warmth, 
+    gregariousness, assertiveness, excitement_seeking, activity, positive_emotions, trust, 
+    straightforwardness, altruism, compliance, modesty, tenderMindedness, competence, 
+    order0, dutifulness, achievement_striving, selfDiscipline, deliberation
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from label
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from label
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.moxing.ssm.model.Label" >
+    insert into label (id, user_id, extraversion_score, 
+      agreeableness_score, conscientiousness_score, 
+      warmth, gregariousness, assertiveness, 
+      excitement_seeking, activity, positive_emotions, 
+      trust, straightforwardness, altruism, 
+      compliance, modesty, tenderMindedness, 
+      competence, order0, dutifulness, 
+      achievement_striving, selfDiscipline, deliberation
+      )
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{extraversionScore,jdbcType=INTEGER}, 
+      #{agreeablenessScore,jdbcType=INTEGER}, #{conscientiousnessScore,jdbcType=INTEGER}, 
+      #{warmth,jdbcType=INTEGER}, #{gregariousness,jdbcType=INTEGER}, #{assertiveness,jdbcType=INTEGER}, 
+      #{excitementSeeking,jdbcType=INTEGER}, #{activity,jdbcType=INTEGER}, #{positiveEmotions,jdbcType=INTEGER}, 
+      #{trust,jdbcType=INTEGER}, #{straightforwardness,jdbcType=INTEGER}, #{altruism,jdbcType=INTEGER}, 
+      #{compliance,jdbcType=INTEGER}, #{modesty,jdbcType=INTEGER}, #{tendermindedness,jdbcType=INTEGER}, 
+      #{competence,jdbcType=INTEGER}, #{order0,jdbcType=INTEGER}, #{dutifulness,jdbcType=INTEGER}, 
+      #{achievementStriving,jdbcType=INTEGER}, #{selfdiscipline,jdbcType=INTEGER}, #{deliberation,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.moxing.ssm.model.Label" >
+    insert into label
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="extraversionScore != null" >
+        extraversion_score,
+      </if>
+      <if test="agreeablenessScore != null" >
+        agreeableness_score,
+      </if>
+      <if test="conscientiousnessScore != null" >
+        conscientiousness_score,
+      </if>
+      <if test="warmth != null" >
+        warmth,
+      </if>
+      <if test="gregariousness != null" >
+        gregariousness,
+      </if>
+      <if test="assertiveness != null" >
+        assertiveness,
+      </if>
+      <if test="excitementSeeking != null" >
+        excitement_seeking,
+      </if>
+      <if test="activity != null" >
+        activity,
+      </if>
+      <if test="positiveEmotions != null" >
+        positive_emotions,
+      </if>
+      <if test="trust != null" >
+        trust,
+      </if>
+      <if test="straightforwardness != null" >
+        straightforwardness,
+      </if>
+      <if test="altruism != null" >
+        altruism,
+      </if>
+      <if test="compliance != null" >
+        compliance,
+      </if>
+      <if test="modesty != null" >
+        modesty,
+      </if>
+      <if test="tendermindedness != null" >
+        tenderMindedness,
+      </if>
+      <if test="competence != null" >
+        competence,
+      </if>
+      <if test="order0 != null" >
+        order0,
+      </if>
+      <if test="dutifulness != null" >
+        dutifulness,
+      </if>
+      <if test="achievementStriving != null" >
+        achievement_striving,
+      </if>
+      <if test="selfdiscipline != null" >
+        selfDiscipline,
+      </if>
+      <if test="deliberation != null" >
+        deliberation,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="extraversionScore != null" >
+        #{extraversionScore,jdbcType=INTEGER},
+      </if>
+      <if test="agreeablenessScore != null" >
+        #{agreeablenessScore,jdbcType=INTEGER},
+      </if>
+      <if test="conscientiousnessScore != null" >
+        #{conscientiousnessScore,jdbcType=INTEGER},
+      </if>
+      <if test="warmth != null" >
+        #{warmth,jdbcType=INTEGER},
+      </if>
+      <if test="gregariousness != null" >
+        #{gregariousness,jdbcType=INTEGER},
+      </if>
+      <if test="assertiveness != null" >
+        #{assertiveness,jdbcType=INTEGER},
+      </if>
+      <if test="excitementSeeking != null" >
+        #{excitementSeeking,jdbcType=INTEGER},
+      </if>
+      <if test="activity != null" >
+        #{activity,jdbcType=INTEGER},
+      </if>
+      <if test="positiveEmotions != null" >
+        #{positiveEmotions,jdbcType=INTEGER},
+      </if>
+      <if test="trust != null" >
+        #{trust,jdbcType=INTEGER},
+      </if>
+      <if test="straightforwardness != null" >
+        #{straightforwardness,jdbcType=INTEGER},
+      </if>
+      <if test="altruism != null" >
+        #{altruism,jdbcType=INTEGER},
+      </if>
+      <if test="compliance != null" >
+        #{compliance,jdbcType=INTEGER},
+      </if>
+      <if test="modesty != null" >
+        #{modesty,jdbcType=INTEGER},
+      </if>
+      <if test="tendermindedness != null" >
+        #{tendermindedness,jdbcType=INTEGER},
+      </if>
+      <if test="competence != null" >
+        #{competence,jdbcType=INTEGER},
+      </if>
+      <if test="order0 != null" >
+        #{order0,jdbcType=INTEGER},
+      </if>
+      <if test="dutifulness != null" >
+        #{dutifulness,jdbcType=INTEGER},
+      </if>
+      <if test="achievementStriving != null" >
+        #{achievementStriving,jdbcType=INTEGER},
+      </if>
+      <if test="selfdiscipline != null" >
+        #{selfdiscipline,jdbcType=INTEGER},
+      </if>
+      <if test="deliberation != null" >
+        #{deliberation,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.moxing.ssm.model.Label" >
+    update label
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="extraversionScore != null" >
+        extraversion_score = #{extraversionScore,jdbcType=INTEGER},
+      </if>
+      <if test="agreeablenessScore != null" >
+        agreeableness_score = #{agreeablenessScore,jdbcType=INTEGER},
+      </if>
+      <if test="conscientiousnessScore != null" >
+        conscientiousness_score = #{conscientiousnessScore,jdbcType=INTEGER},
+      </if>
+      <if test="warmth != null" >
+        warmth = #{warmth,jdbcType=INTEGER},
+      </if>
+      <if test="gregariousness != null" >
+        gregariousness = #{gregariousness,jdbcType=INTEGER},
+      </if>
+      <if test="assertiveness != null" >
+        assertiveness = #{assertiveness,jdbcType=INTEGER},
+      </if>
+      <if test="excitementSeeking != null" >
+        excitement_seeking = #{excitementSeeking,jdbcType=INTEGER},
+      </if>
+      <if test="activity != null" >
+        activity = #{activity,jdbcType=INTEGER},
+      </if>
+      <if test="positiveEmotions != null" >
+        positive_emotions = #{positiveEmotions,jdbcType=INTEGER},
+      </if>
+      <if test="trust != null" >
+        trust = #{trust,jdbcType=INTEGER},
+      </if>
+      <if test="straightforwardness != null" >
+        straightforwardness = #{straightforwardness,jdbcType=INTEGER},
+      </if>
+      <if test="altruism != null" >
+        altruism = #{altruism,jdbcType=INTEGER},
+      </if>
+      <if test="compliance != null" >
+        compliance = #{compliance,jdbcType=INTEGER},
+      </if>
+      <if test="modesty != null" >
+        modesty = #{modesty,jdbcType=INTEGER},
+      </if>
+      <if test="tendermindedness != null" >
+        tenderMindedness = #{tendermindedness,jdbcType=INTEGER},
+      </if>
+      <if test="competence != null" >
+        competence = #{competence,jdbcType=INTEGER},
+      </if>
+      <if test="order0 != null" >
+        order0 = #{order0,jdbcType=INTEGER},
+      </if>
+      <if test="dutifulness != null" >
+        dutifulness = #{dutifulness,jdbcType=INTEGER},
+      </if>
+      <if test="achievementStriving != null" >
+        achievement_striving = #{achievementStriving,jdbcType=INTEGER},
+      </if>
+      <if test="selfdiscipline != null" >
+        selfDiscipline = #{selfdiscipline,jdbcType=INTEGER},
+      </if>
+      <if test="deliberation != null" >
+        deliberation = #{deliberation,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.moxing.ssm.model.Label" >
+    update label
+    set user_id = #{userId,jdbcType=INTEGER},
+      extraversion_score = #{extraversionScore,jdbcType=INTEGER},
+      agreeableness_score = #{agreeablenessScore,jdbcType=INTEGER},
+      conscientiousness_score = #{conscientiousnessScore,jdbcType=INTEGER},
+      warmth = #{warmth,jdbcType=INTEGER},
+      gregariousness = #{gregariousness,jdbcType=INTEGER},
+      assertiveness = #{assertiveness,jdbcType=INTEGER},
+      excitement_seeking = #{excitementSeeking,jdbcType=INTEGER},
+      activity = #{activity,jdbcType=INTEGER},
+      positive_emotions = #{positiveEmotions,jdbcType=INTEGER},
+      trust = #{trust,jdbcType=INTEGER},
+      straightforwardness = #{straightforwardness,jdbcType=INTEGER},
+      altruism = #{altruism,jdbcType=INTEGER},
+      compliance = #{compliance,jdbcType=INTEGER},
+      modesty = #{modesty,jdbcType=INTEGER},
+      tenderMindedness = #{tendermindedness,jdbcType=INTEGER},
+      competence = #{competence,jdbcType=INTEGER},
+      order0 = #{order0,jdbcType=INTEGER},
+      dutifulness = #{dutifulness,jdbcType=INTEGER},
+      achievement_striving = #{achievementStriving,jdbcType=INTEGER},
+      selfDiscipline = #{selfdiscipline,jdbcType=INTEGER},
+      deliberation = #{deliberation,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
