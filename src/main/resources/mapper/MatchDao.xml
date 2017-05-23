@@ -63,12 +63,12 @@
         <result property="altruism" column="altruism" />
         <result property="compliance" column="compliance" />
         <result property="modesty" column="modesty" />
-        <result property="tenderMindedness" column="tender-mindedness" />
+        <result property="tenderMindedness" column="tenderMindedness" />
         <result property="competence" column="competence" />
         <result property="order" column="order0" />
         <result property="dutifulness" column="dutifulness" />
         <result property="achievementStriving" column="achievement_striving" />
-        <result property="selfDiscipline" column="mDate" />
+        <result property="selfDiscipline" column="selfDiscipline" />
         <result property="deliberation" column="deliberation" />
 
     </resultMap>
@@ -77,9 +77,9 @@
         M.*,u.*,l.warmth,l.gregariousness, l.assertiveness,
         l.excitement_seeking, l.activity, l.positive_emotions,
         l.trust, l.straightforwardness, l.altruism,
-        l.compliance, l.modesty, l.tender-mindedness,
+        l.compliance, l.modesty, l.tenderMindedness,
         l.competence, l.order0, l.dutifulness,
-        l.achievement_striving, l.self-discipline, l.deliberation
+        l.achievement_striving, l.selfDiscipline, l.deliberation
         FROM
         (
             select
@@ -117,9 +117,9 @@
         M.*,u.*,l.warmth,l.gregariousness, l.assertiveness,
         l.excitement_seeking, l.activity, l.positive_emotions,
         l.trust, l.straightforwardness, l.altruism,
-        l.compliance, l.modesty, l.tender-mindedness,
+        l.compliance, l.modesty, l.tenderMindedness,
         l.competence, l.order0, l.dutifulness,
-        l.achievement_striving, l.self-discipline, l.deliberation
+        l.achievement_striving, l.selfDiscipline, l.deliberation
         FROM
         (
             select

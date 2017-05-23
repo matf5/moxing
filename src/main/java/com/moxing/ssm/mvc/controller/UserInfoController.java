@@ -142,60 +142,60 @@ public class UserInfoController {
         }
         try {
 
-            if (label.getWarmth()) {
+            if (label.getWarmth() == 1) {
                 eScore += 1;
             }
-            if (label.getGregariousness()) {
+            if (label.getGregariousness() == 1) {
                 eScore += 1;
             }
-            if (label.getAssertiveness()) {
+            if (label.getAssertiveness() == 1) {
                 eScore += 1;
             }
-            if (label.getExcitementSeeking()) {
+            if (label.getExcitementSeeking() == 1) {
                 eScore += 1;
             }
-            if (label.getActivity()) {
+            if (label.getActivity() == 1) {
                 eScore += 1;
             }
-            if (label.getPositiveEmotions()) {
+            if (label.getPositiveEmotions() == 1) {
                 eScore += 1;
             }
             label.setExtraversionScore(eScore);
-            if (label.getTrust()) {
+            if (label.getTrust() == 1) {
                 aScore += 1;
             }
-            if (label.getStraightforwardness()) {
+            if (label.getStraightforwardness() == 1) {
                 aScore += 1;
             }
-            if (label.getAltruism()) {
+            if (label.getAltruism() == 1) {
                 aScore += 1;
             }
-            if (label.getCompliance()) {
+            if (label.getCompliance() == 1) {
                 aScore += 1;
             }
-            if (label.getModesty()) {
+            if (label.getModesty() == 1) {
                 aScore += 1;
             }
-            if (label.getTenderMindedness()) {
+            if (label.getTenderMindedness() == 1) {
                 aScore += 1;
             }
             label.setAgreeablenessScore(aScore);
-            if (label.getCompetence()) {
+            if (label.getCompetence() == 1) {
                 cScore += 1;
             }
-            if (label.getOrder()) {
+            if (label.getOrder() == 1) {
                 cScore += 1;
             }
-            if (label.getDutifulness()) {
+            if (label.getDutifulness() == 1) {
                 cScore += 1;
             }
-            if (label.getAchievementStriving()) {
+            if (label.getAchievementStriving() == 1) {
                 cScore += 1;
             }
-            if (label.getSelfDiscipline()) {
+            if (label.getSelfDiscipline() == 1) {
                 cScore += 1;
             }
-            if (label.getDeliberation()) {
+            if (label.getDeliberation() == 1) {
                 cScore += 1;
             }
             label.setConscientiousnessScore(cScore);
