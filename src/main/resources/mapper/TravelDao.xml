@@ -41,29 +41,29 @@
     </resultMap>
 
     <resultMap id="labelResult" type="Label">
-        <id property="id" column="id" />
-        <result property="userId" column="user_id" />
-        <result property="extraversionScore" column="extraversion_score" />
-        <result property="agreeablenessScore" column="agreeableness_score" />
-        <result property="conscientiousnessScore" column="conscientiousness_score" />
-        <result property="warmth" column="warmth" />
-        <result property="gregariousness" column="gregariousness" />
-        <result property="assertiveness" column="assertiveness" />
-        <result property="excitementSeeking" column="excitement_seeking" />
-        <result property="activity" column="activity" />
-        <result property="positiveEmotions" column="positive_emotions" />
-        <result property="trust" column="trust" />
-        <result property="straightforwardness" column="straightforwardness" />
-        <result property="altruism" column="altruism" />
-        <result property="compliance" column="compliance" />
-        <result property="modesty" column="modesty" />
-        <result property="tenderMindedness" column="tenderMindedness" />
-        <result property="competence" column="competence" />
-        <result property="order" column="order0" />
-        <result property="dutifulness" column="dutifulness" />
-        <result property="achievementStriving" column="achievement_striving" />
-        <result property="selfDiscipline" column="selfDiscipline" />
-        <result property="deliberation" column="deliberation" />
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="user_id" property="userId" jdbcType="INTEGER" />
+        <result column="extraversion_score" property="extraversionScore" jdbcType="INTEGER" />
+        <result column="agreeableness_score" property="agreeablenessScore" jdbcType="INTEGER" />
+        <result column="conscientiousness_score" property="conscientiousnessScore" jdbcType="INTEGER" />
+        <result column="warmth" property="warmth" jdbcType="INTEGER" />
+        <result column="gregariousness" property="gregariousness" jdbcType="INTEGER" />
+        <result column="assertiveness" property="assertiveness" jdbcType="INTEGER" />
+        <result column="excitement_seeking" property="excitementSeeking" jdbcType="INTEGER" />
+        <result column="activity" property="activity" jdbcType="INTEGER" />
+        <result column="positive_emotions" property="positiveEmotions" jdbcType="INTEGER" />
+        <result column="trust" property="trust" jdbcType="INTEGER" />
+        <result column="straightforwardness" property="straightforwardness" jdbcType="INTEGER" />
+        <result column="altruism" property="altruism" jdbcType="INTEGER" />
+        <result column="compliance" property="compliance" jdbcType="INTEGER" />
+        <result column="modesty" property="modesty" jdbcType="INTEGER" />
+        <result column="tenderMindedness" property="tendermindedness" jdbcType="INTEGER" />
+        <result column="competence" property="competence" jdbcType="INTEGER" />
+        <result column="order0" property="order0" jdbcType="INTEGER" />
+        <result column="dutifulness" property="dutifulness" jdbcType="INTEGER" />
+        <result column="achievement_striving" property="achievementStriving" jdbcType="INTEGER" />
+        <result column="selfDiscipline" property="selfdiscipline" jdbcType="INTEGER" />
+        <result column="deliberation" property="deliberation" jdbcType="INTEGER" />
 
     </resultMap>
 
